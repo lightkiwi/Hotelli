@@ -10,6 +10,8 @@
   |
  */
 
+Route::resource('/user', 'UserController');
+
 Route::get('/', function () {
 	return view('visite_accueil');
 });
