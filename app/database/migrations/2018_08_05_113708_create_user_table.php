@@ -23,7 +23,6 @@ class CreateUserTable extends Migration
             $table->integer('id_address');
             $table->integer('id_profil');
             $table->integer('id_gender');
-            $table->dateTime('registration_date');
             $table->dateTime('rgpd_date');
             $table->boolean('newsletter');
             $table->ipAddress('ip_address');
