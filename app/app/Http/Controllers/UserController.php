@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $users = \App\User::all();
 
-        return view('users', ['allUsers' => $users]);
+        return view('pages.user.users', ['allUsers' => $users]);
     }
 
     /**
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user');
+        return view('pages.user.user');
     }
 
     /**
