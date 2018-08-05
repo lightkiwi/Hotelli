@@ -15,6 +15,8 @@ class CreateSpecialsTable extends Migration
     {
         Schema::create('specials', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code', 50);
+            $table->float('reduce');
             $table->timestamps();
         });
     }

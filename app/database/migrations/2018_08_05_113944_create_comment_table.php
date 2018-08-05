@@ -15,6 +15,11 @@ class CreateCommentTable extends Migration
     {
         Schema::create('comment', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_room');
+            $table->integer('id_user');
+            $table->string('text', 250);
+            $table->integer('id_parent')->comment('id du commentaire parent');
+            $table->float('score');
             $table->timestamps();
         });
     }
