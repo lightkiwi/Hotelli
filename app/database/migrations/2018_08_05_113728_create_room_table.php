@@ -18,9 +18,10 @@ class CreateRoomTable extends Migration
             $table->float('area');
             $table->string('title', 50);
             $table->string('description', 250);
-            $table->float('prix');
+            $table->float('price');
             $table->float('score');
             $table->integer('id_hotel');
+            $table->integer('id_type');
             $table->timestamps();
         });
     }
