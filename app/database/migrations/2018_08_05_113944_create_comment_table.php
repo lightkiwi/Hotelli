@@ -17,8 +17,8 @@ class CreateCommentTable extends Migration
             $table->increments('id');
             $table->integer('id_room');
             $table->integer('id_user');
-            $table->string('text', 250);
-            $table->integer('id_parent')->comment('id du commentaire parent');
+            $table->string('text', 250)->nullable();
+            $table->integer('id_parent')->comment('id du commentaire parent')->nullable();
             $table->float('score');
             $table->timestamps();
         });

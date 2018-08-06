@@ -22,7 +22,7 @@ class CreateUserTable extends Migration
             $table->string('password');
             $table->integer('id_address');
             $table->integer('id_profil');
-            $table->integer('id_gender');
+            $table->integer('id_gender')->nullable();
             $table->dateTime('rgpd_date');
             $table->boolean('newsletter');
             $table->ipAddress('ip_address');
