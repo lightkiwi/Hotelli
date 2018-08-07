@@ -25,15 +25,15 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="room">Chambres</label>
-                        <input type="number" class="form-control" id="room">
+                        <input type="number" class="form-control" id="room" name="room">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="adult">Adultes</label>
-                        <input type="number" class="form-control" id="adult">
+                        <input type="number" class="form-control" id="adult" name="adult">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="child">Enfants</label>
-                        <input type="number" class="form-control" id="child">
+                        <input type="number" class="form-control" id="child" name="child">
                     </div>
                 </div>
 
