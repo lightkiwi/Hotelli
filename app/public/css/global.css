@@ -8,7 +8,15 @@ and open the template in the editor.
     Author     : deepgreen
 */
 
-form input {
+form input.form-control {
     border: none;
-    border-bottom: 1px white solid;
+    border-bottom: 1px grey solid;
+    border-radius: 0;
+}
+
+div.contenu {
+    background: rgba(243,194,197,0.8);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 0.25em;
 }

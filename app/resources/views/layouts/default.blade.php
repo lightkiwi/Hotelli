@@ -3,8 +3,13 @@
 	<head>
 		@include('includes.head')
 		@yield('css')
+		<style type="text/css">
+			body {
+				background: url('{{ asset('img/big-header-2.jpg') }}') top no-repeat fixed;
+			}
+		</style>
 	</head>
-	<body>
+	<body style="">
 		<div class="container-fluid">
 
 			<header class="container">
