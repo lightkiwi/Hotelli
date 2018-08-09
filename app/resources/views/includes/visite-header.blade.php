@@ -13,18 +13,18 @@
 			</li>
             @else
 			<li class="nav-item">
-				<button id="nav-link-connexion" type="button" class="btn btn-link nav-link" data-toggle="modal" data-target="#loginModalCentered">Connexion</button>
-				<!--	<a class="nav-link" href="">Connexion</a>-->
+				<!--				<button type="button" class="btn btn-link nav-link" data-toggle="modal" data-target="#loginModalCentered">Connexion</button>-->
+				<a id="nav-link-login" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#loginModalCentered">Connexion</a>
 			</li>
             <li class="nav-item">
-                <a class="nav-link" href="/inscription">Inscription</a>
+				<a id="nav-link-signin" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#signinModalCentered">Inscription</a>
             </li>
 			@endif
             <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cgu">FAQ</a>
+                <a class="nav-link" href="/faq">FAQ</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="/search">

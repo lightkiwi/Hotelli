@@ -46,6 +46,14 @@ footer {
     clear: both;
 }
 
+a.nav-link-cursor {
+    cursor: pointer;
+}
+
+span.red {
+    color: red;
+}
+
 /*form input.form-control {
     border: none;
     border-bottom: 1px grey solid;
