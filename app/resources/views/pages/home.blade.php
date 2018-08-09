@@ -8,7 +8,7 @@
             <form action="/search" method="post">
                 @csrf
                 <label for="searchField">Champs de recherche</label>
-                <input type="text" id="searchField" name="searchField" class="form-control" aria-describedby="champs de recherche">
+                <input type="search" id="searchField" name="searchField" class="form-control" aria-describedby="champs de recherche">
                 <small id="searchFieldHelp" class="form-text text-muted">
                     Mots-clé : vue sur mer, balcon, piscine, lit triple, room service.
                 </small>
