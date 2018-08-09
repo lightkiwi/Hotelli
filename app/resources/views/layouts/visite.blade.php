@@ -5,10 +5,12 @@
 		@yield('css')
 	</head>
 	<body>
-		@include('includes.header')
+		@include('includes.visite-header')
 
-		@yield('contenu')
+		@yield('content')
 
-		@include('includes.footer')
+		@include('includes.visite-footer')
+
+		@include('includes.visite-modal')
 	</body>
 </html>

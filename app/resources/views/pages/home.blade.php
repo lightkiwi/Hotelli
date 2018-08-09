@@ -1,5 +1,4 @@
-
-@extends('layouts.default')
+@extends('layouts.visite')
 
 @section('title', 'Accueil')
 
@@ -67,8 +66,8 @@
 	</div>
 </div>
 @endforeach
+
 @endif
 <br>
 <br>
-
 @stop

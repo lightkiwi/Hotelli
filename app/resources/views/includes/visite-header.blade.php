@@ -8,17 +8,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="ml-auto navbar-nav mr-4">
             @if(isset($_SESSION['connected']) && $_SESSION['connected'])
-                <li class="nav-item">
-                    <a class="nav-link" href="/disconnect">Déconnexion</a>
-                </li>
+			<li class="nav-item">
+				<a class="nav-link" href="/disconnect">Déconnexion</a>
+			</li>
             @else
-                <li class="nav-item">
-                    <a class="nav-link" href="/connection">Connexion</a>
-                </li>
-            @endif
+			<li class="nav-item">
+				<button id="nav-link-connexion" type="button" class="btn btn-link nav-link" data-toggle="modal" data-target="#loginModalCentered">Connexion</button>
+				<!--	<a class="nav-link" href="">Connexion</a>-->
+			</li>
             <li class="nav-item">
                 <a class="nav-link" href="/inscription">Inscription</a>
             </li>
+			@endif
             <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact</a>
             </li>
