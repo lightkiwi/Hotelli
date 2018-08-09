@@ -16,16 +16,14 @@ body {
     overflow-x: hidden;
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .opacity-article {
     margin: 3% 12%;
     border-radius: 4px;
-    opacity: 1;
 }
 
 .icon-gb {
@@ -35,9 +33,15 @@ body {
     background-position: center;
 }
 
+#contact-infos {
+    font-size: smaller;
+}
+
 footer {
     position: absolute;
+    width: 100%;
     right: 0;
     bottom: 0;
     left: 0;
+    clear: both;
 }
