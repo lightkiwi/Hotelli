@@ -1,9 +1,10 @@
 <footer class="bg-light">
-	<!--	<ul class="">
-			<li><a href="/cgu" class="links">FAQ</a></li>
+	<div class="py-2 text-center bg-light">
+		<ul class="">
 			<li><a href="/faq" class="links">CGU</a></li>
-		</ul>-->
-    <div class="py-2 text-center bg-light">
+		</ul>
+	</div>
+    <div id="copy" class="py-2 text-center bg-light">
         © 2018 Copyright - <a href="/"> hotelli.com</a>
     </div>
 </footer>
