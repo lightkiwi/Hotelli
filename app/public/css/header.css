@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : deepgreen
 */
 
-header {
+/*header {
     background-image: url("{{ asset('img/hotel-header.jpg') }}");
     height: 150px;
 }
@@ -18,4 +18,4 @@ header {
     position: fixed;
     top:0;
     right: 0;
-}
+}*/

@@ -22,6 +22,7 @@ class CreateRoomTable extends Migration
             $table->float('score');
             $table->integer('id_hotel');
             $table->integer('id_type');
+            $table->integer('id_media');
             $table->timestamps();
         });
     }
