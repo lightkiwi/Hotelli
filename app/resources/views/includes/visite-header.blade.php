@@ -7,7 +7,17 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="ml-auto navbar-nav mr-4">
-            @if(isset($_SESSION['connected']) && $_SESSION['connected'])
+            @if(isset($_SESSION['connected']) && $_SESSION['connected'] && ($_SESSION['profil']['id'] === 1 || $_SESSION['profil']['id'] === 2))
+			<li class="nav-item">
+				<a class="nav-link" href="/account">Administration</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/disconnect">Déconnexion</a>
+			</li>
+            @elseif(isset($_SESSION['connected']) && $_SESSION['connected'])
+			<li class="nav-item">
+				<a class="nav-link" href="/account">Gestion du compte</a>
+			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/disconnect">Déconnexion</a>
 			</li>

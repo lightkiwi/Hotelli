@@ -6,27 +6,28 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateGenderTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('gender', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('gender_label');
-            $table->timestamps();
-        });
-    }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('gender');
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('gender', function (Blueprint $table) {
+			$table->increments('id');
+			$table->string('label');
+			$table->timestamps();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('gender');
+	}
 }

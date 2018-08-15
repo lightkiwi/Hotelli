@@ -6,27 +6,28 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateProfilTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('profil', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('profil_label');
-            $table->timestamps();
-        });
-    }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('profil');
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('profil', function (Blueprint $table) {
+			$table->increments('id');
+			$table->string('label');
+			$table->timestamps();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('profil');
+	}
 }

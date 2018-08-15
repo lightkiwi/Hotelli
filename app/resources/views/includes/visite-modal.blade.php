@@ -1,3 +1,4 @@
+<!-- modal de login -->
 <div class="modal fade" id="loginModalCentered" tabindex="-1" role="dialog" aria-labelledby="loginModalCentered" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
@@ -8,12 +9,13 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="loginModalForm" action="/login">
+				<form id="loginModalForm" action="/login" method="post">
+					@csrf
 					<div class="form-group">
-						<input type="email" class="form-control" id="loginModalFormEmail" aria-describedby="emailHelp" placeholder="email">
+						<input type="email" class="form-control" id="loginModalFormEmail" name="loginModalFormEmail" aria-describedby="emailHelp" placeholder="email">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" id="loginModalFormPassword" placeholder="Password">
+						<input type="password" class="form-control" id="loginModalFormPassword" name="loginModalFormPassword" placeholder="Password">
 					</div>
 				</form>
 			</div>
@@ -25,6 +27,19 @@
 	</div>
 </div>
 
+@if (!empty($infoLogin))
+<!-- modal d'info suite login -->
+<div class="modal fade" id="loginModalCentered" tabindex="-1" role="dialog" aria-labelledby="loginModalCentered" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-body">
+
+		</div>
+	</div>
+</div>
+</div>
+@endif
+
+<!-- modal d'inscription -->
 <div class="modal fade" id="signinModalCentered" tabindex="-1" role="dialog" aria-labelledby="signinModalCentered" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
@@ -35,7 +50,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="signinModalForm">
+				<form id="signinModalForm" action="/signup" method="post">
 					<label for="signinInputEmail">Informations Principales</label>
 					<div class="form-row">
 						<div class="form-group col-md-4">

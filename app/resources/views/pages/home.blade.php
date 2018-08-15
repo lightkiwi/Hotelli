@@ -49,8 +49,8 @@
 	</div>
 </div>
 
-@if (!empty($allRooms))
-@foreach ($allRooms as $room)
+@if (!empty($rooms))
+@foreach ($rooms as $room)
 <div class="opacity-article position-relative overflow-hidden p-4 bg-light">
 	<div class="col-md-12 mx-auto my-5">
 		<div class="row">

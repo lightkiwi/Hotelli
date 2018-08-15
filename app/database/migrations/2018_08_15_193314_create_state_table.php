@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeTable extends Migration
+class CreateStateTable extends Migration
 {
 
 	/**
@@ -14,7 +14,7 @@ class CreateTypeTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('type', function (Blueprint $table) {
+		Schema::create('state', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('label');
 			$table->timestamps();
@@ -28,6 +28,6 @@ class CreateTypeTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('type');
+		Schema::dropIfExists('state');
 	}
 }
