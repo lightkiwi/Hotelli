@@ -106,6 +106,10 @@ class UserController extends Controller
 			'etat'	 => true,
 			'info'	 => 'Connexion réussie !'
 		];
+		$loginKo = [
+			'etat'	 => false,
+			'info'	 => 'Connexion échouée, merci de vérifier vos identifiants de connexion'
+		];
 		//vérification du login
 		if ($request->input('loginModalFormEmail') !== null && $request->input('loginModalFormPassword') !== null) {
 
@@ -114,9 +118,47 @@ class UserController extends Controller
 //			$_SESSION['profil']['date_login'] = date();
 			$_SESSION['profil']['id']	 = 3;
 			$_SESSION['profil']['email'] = $request->input('loginModalFormEmail');
+			$infoLogin					 = $loginOk;
 		}
 		//retour à la page d'accueil
-		$infoLogin = $loginOk;
+
 		return view('pages.home', compact('infoLogin'));
+	}
+
+	public function singin(Request $request)
+	{
+		$infoSignin = null;
+
+		return view('pages.home', compact('infoSignin'));
+	}
+
+	public function account()
+	{
+
+	}
+
+	public function admin()
+	{
+		return view('pages.admin.home');
+	}
+
+	public function adminUsers()
+	{
+
+	}
+
+	public function adminHotel()
+	{
+
+	}
+
+	public function adminBooking()
+	{
+
+	}
+
+	public function adminStat()
+	{
+
 	}
 }

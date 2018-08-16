@@ -29,10 +29,18 @@
 
 @if (!empty($infoLogin))
 <!-- modal d'info suite login -->
-<div class="modal fade" id="loginModalCentered" tabindex="-1" role="dialog" aria-labelledby="loginModalCentered" aria-hidden="true">
+<div class="modal fade" id="infoLoginModal" tabindex="-1" role="dialog" aria-labelledby="infoLoginModal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-body">
-
+			@if ($infoLogin['etat'])
+			<div class="alert alert-success" role="alert">
+				{{ $infoLogin['info'] }}
+			</div>
+			@else
+			<div class="alert alert-warning" role="alert">
+				{{ $infoLogin['info'] }}
+			</div>
+			@endif
 		</div>
 	</div>
 </div>

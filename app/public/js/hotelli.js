@@ -8,4 +8,11 @@ $(document).ready(function () {
         event.preventDefault();
         $('#loginModalForm').submit();
     });
+    //modal de confirmation
+    $('#infoLoginModal').modal('show');
+    setTimeout(doIt, 3000);
 });
+
+var closeInfoLogin = function () {
+    $('#infoLoginModal').modal('toggle');
+};
