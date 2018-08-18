@@ -11,7 +11,7 @@ return [
 	  |
 	 */
 
-	'name'				 => env('APP_NAME', 'Laravel'),
+	'name'				 => env('APP_NAME', 'Hotelli'),
 	/*
 	  |--------------------------------------------------------------------------
 	  | Application Environment
@@ -66,7 +66,7 @@ return [
 	  | to any of the locales which will be supported by the application.
 	  |
 	 */
-	'locale'			 => 'en',
+	'locale'			 => 'fr',
 	/*
 	  |--------------------------------------------------------------------------
 	  | Application Fallback Locale

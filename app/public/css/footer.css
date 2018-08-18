@@ -1,16 +1,8 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : 6 août 2018, 19:54:15
-    Author     : deepgreen
-*/
-
-/*footer {
-    background: #EF92B1;
-    position: relative;
-    bottom: 0px;
-    margin-bottom: 0px;
-}*/
+footer {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    clear: both;
+}

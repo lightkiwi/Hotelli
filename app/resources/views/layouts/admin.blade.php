@@ -2,15 +2,15 @@
 <html lang="{{ app()->getLocale() }}">
 	<head>
 		@include('includes.head')
-		@include('includes.visite.css')
+		@include('includes.admin.css')
 	</head>
 	<body>
-		@include('includes.visite.header')
+		@include('includes.admin.header')
 
 		@yield('content')
 
-		@include('includes.visite.footer')
+		@include('includes.admin.footer')
 
-		@include('includes.visite.modal')
+		@include('includes.admin.modal')
 	</body>
 </html>

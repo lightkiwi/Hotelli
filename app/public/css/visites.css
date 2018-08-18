@@ -1,0 +1,41 @@
+body {
+    background-image: url('../images/background_hotelli.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+    position: relative;
+    margin: 0;
+    margin-bottom: 0px;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.opacity-article {
+    margin: 3% 12%;
+    border-radius: 4px;
+}
+
+.icon-gb {
+    background-image: url("../images/keys_ico.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#contact-infos {
+    font-size: smaller;
+}
+
+a.nav-link-cursor {
+    cursor: pointer;
+}
+
+span.red {
+    color: red;
+}
