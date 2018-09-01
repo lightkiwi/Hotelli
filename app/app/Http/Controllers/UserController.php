@@ -100,46 +100,14 @@ class UserController extends Controller
 		//
 	}
 
-	public function login(Request $request)
-	{
-		$loginOk = [
-			'etat'	 => true,
-			'info'	 => 'Connexion réussie !'
-		];
-		$loginKo = [
-			'etat'	 => false,
-			'info'	 => 'Connexion échouée, merci de vérifier vos identifiants de connexion'
-		];
-		//vérification du login
-		if ($request->input('loginModalFormEmail') !== null && $request->input('loginModalFormPassword') !== null) {
-
-			$_SESSION['connected']		 = true;
-//			$_SESSION['profil'] = [];
-//			$_SESSION['profil']['date_login'] = date();
-			$_SESSION['profil']['id']	 = 3;
-			$_SESSION['profil']['email'] = $request->input('loginModalFormEmail');
-			$infoLogin					 = $loginOk;
-		}
-		//retour à la page d'accueil
-
-		return view('pages.home', compact('infoLogin'));
-	}
-
-	public function singin(Request $request)
-	{
-		$infoSignin = null;
-
-		return view('pages.home', compact('infoSignin'));
-	}
-
 	public function account()
 	{
-
+		return view('pages.account.home');
 	}
 
 	public function admin()
 	{
-		return view('pages.admin.admHome');
+		return view('pages.admin.home');
 	}
 
 	public function adminUsers()

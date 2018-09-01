@@ -24,24 +24,19 @@ Route::resource('/user', 'UserController');
 /**
  * Routes des pages principales
  */
-Route::get('/', function () {
-	return view('pages.home');
-});
-Route::get('/faq', function () {
-	return view('pages.faq'); //-----------------TODO
-});
-Route::get('/cgu', function () {
-	return view('pages.cgu'); //-----------------TODO
-});
-Route::get('/contact', function () {
-	return view('pages.contact'); //-----------------TODO
-});
+Route::post('/', 'PagesVisiteController@index');
+Route::get('/', 'PagesVisiteController@index');
+Route::get('/faq', 'PagesVisiteController@faq'); //------TODO
+Route::get('/cgu', 'PagesVisiteController@cgu'); //------TODO
+Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
 
 /**
  * Fonction login et inscription
  */
-Route::post('/login', 'UserController@login');
-Route::post('/singin', 'UserController@singin'); //------TODO
+Route::get('/login', 'PagesVisiteController@index');
+Route::get('/singin', 'PagesVisiteController@index');
+Route::post('/login', 'PagesVisiteController@login');
+Route::post('/singin', 'PagesVisiteController@singin'); //------TODO
 
 /**
  * Fonction recherche ------------------TODO
