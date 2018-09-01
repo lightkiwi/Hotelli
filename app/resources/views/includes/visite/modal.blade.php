@@ -96,14 +96,14 @@
 					</div>
 					<div class="form-group">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" required="true" id="gridCheck"/>
-							<label class="form-check-label" for="gridCheck">
+							<input class="form-check-input" type="checkbox" required="true" id="cguCheck"/>
+							<label class="form-check-label" for="cguCheck">
 								J'accepte les <a>CGU</a> <span class="red">*</span>
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="gridCheck">
-							<label class="form-check-label" for="gridCheck">
+							<input class="form-check-input" type="checkbox" id="newsCheck">
+							<label class="form-check-label" for="newsCheck">
 								Inscription à la newsletter
 							</label>
 						</div>
