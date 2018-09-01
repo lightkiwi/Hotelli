@@ -45,6 +45,38 @@
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <span class="mr-2">@lang('global.orderby') : </span>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsNone" value="id" checked>
+                        <label class="form-check-label" for="inlineRadioOptionsNone">
+                            Aucun
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsPrice" value="price">
+                        <label class="form-check-label" for="inlineRadioOptionsPrice">
+                            @lang('search.price')
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsArea" value="area">
+                        <label class="form-check-label" for="inlineRadioOptionsArea">
+                            @lang('search.area')
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsScore" value="score">
+                        <label class="form-check-label" for="inlineRadioOptionsScore">
+                            @lang('search.score')
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="inlineCheckbox" id="inlineCheckbox" value="true">
+                        <label class="form-check-label" for="inlineCheckbox">Inverser</label>
+                    </div>
+                </div>
+
                 <br>
                 <input type="submit" value="Chercher" class="btn btn-danger">
             </form>
@@ -54,17 +86,22 @@
     @if (!empty($rooms))
         @foreach ($rooms as $room)
             <div class="opacity-article position-relative overflow-hidden p-4 bg-light">
-                <div class="col-md-12 mx-auto my-5">$
+                <div class="col-md-12 mx-auto my-5">
                     <div class="row">
                         <div class="col">
-                            <img src="{{ empty($room->path) ? 'http://via.placeholder.com/450x350' : $room->path }}"
+                            <img src="{{ (null === $room->path) ? 'http://via.placeholder.com/450x350' : $room->path }}"
                                  alt="chambre-{{ strtolower($room->title) }}">
                         </div>
                         <div class="col">
                             <h4>{{$room->title}}</h4>
                             <p>{{$room->description}}</p>
+                            <br>
+                            <span class="mr-4"><strong>@lang('search.price') : </strong>{{ $room->price }} €</span>
+                            <span class="mr-4"><strong>@lang('search.area') : </strong>{{ $room->area }} m²</span>
+                            <span class="mr-4"><strong>@lang('search.score') : </strong>{{ $room->score }}</span>
                         </div>
                     </div>
+                <a href="/room/{{ $room->id }}" class="btn btn-dark float-right">@lang('search.booking')</a>
                 </div>
             </div>
         @endforeach
