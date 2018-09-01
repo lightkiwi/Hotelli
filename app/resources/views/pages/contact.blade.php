@@ -1,7 +1,7 @@
 @extends('layouts.visite')
 
-@section('title', 'CGU')
+@section('title', 'Contact')
 
 @section('content')
-page des cgu
+page de contact
 @stop
