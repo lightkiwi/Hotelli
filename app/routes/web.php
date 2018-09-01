@@ -59,7 +59,7 @@ Route::get('/account', 'UserController@account');
 
 
 /**
- * Interface d'administration (employés et administrateurs
+ * Interface d'administration (employés et administrateurs)
  */
 Route::get('/admin', 'UserController@admin');
 Route::get('/admin/users', 'UserController@adminUsers');

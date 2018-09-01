@@ -107,7 +107,7 @@ class UserController extends Controller
 
 	public function admin()
 	{
-		return view('pages.admin.home');
+		return view('pages.admin.admHome');
 	}
 
 	public function adminUsers()
