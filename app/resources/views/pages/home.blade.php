@@ -44,39 +44,6 @@
                                value="0">
                     </div>
                 </div>
-
-                <div class="form-row">
-                    <span class="mr-2">@lang('global.orderby') : </span>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsNone" value="id" checked>
-                        <label class="form-check-label" for="inlineRadioOptionsNone">
-                            Aucun
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsPrice" value="price">
-                        <label class="form-check-label" for="inlineRadioOptionsPrice">
-                            @lang('search.price')
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsArea" value="area">
-                        <label class="form-check-label" for="inlineRadioOptionsArea">
-                            @lang('search.area')
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptionsScore" value="score">
-                        <label class="form-check-label" for="inlineRadioOptionsScore">
-                            @lang('search.score')
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="inlineCheckbox" id="inlineCheckbox" value="true">
-                        <label class="form-check-label" for="inlineCheckbox">Inverser</label>
-                    </div>
-                </div>
-
                 <br>
                 <input type="submit" value="Chercher" class="btn btn-danger">
             </form>

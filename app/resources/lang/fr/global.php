@@ -4,7 +4,10 @@ return [
     'administration' => 'Administration',
     'backToApp' => 'Retour au site',
     'current' => 'Courant',
-    'orderby'=>'Trier par',
+    /**
+     * Order
+     */
+    'order'=>'Trier',
     /**
      * Dates et heures
      */

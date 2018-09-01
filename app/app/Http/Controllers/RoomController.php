@@ -22,7 +22,7 @@ class RoomController extends Controller
             ->leftjoin('media', 'room.id_media', '=', 'media.id')
             //->leftjoin('hotel', 'room.id_hotel','=', 'hotel.id')
             //->leftjoin('type', 'room.id_type','=', 'type.id')
-            ->orderBy('room.' . $request->input('inlineRadioOptions'), (null !== $request->input('inlineCheckbox')) ? 'desc' : 'asc')
+            //->orderBy('room.' . $request->input('inlineRadioOptions'), (null !== $request->input('inlineCheckbox')) ? 'desc' : 'asc')
             ->get([
                 'room.*',
                 'media.path',

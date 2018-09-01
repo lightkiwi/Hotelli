@@ -9,7 +9,10 @@ return [
     'administration' => 'Administration',
     'backToApp' => 'Back to the website',
     'current' => 'current',
-    'orderby'=>'Order by',
+    /**
+     * Order
+     */
+    'order'=>'Order',
     /**
      * Dates et heures
      */
