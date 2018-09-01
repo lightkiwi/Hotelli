@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -14,7 +15,10 @@ class RoomController extends Controller
 	 */
 	public function index()
 	{
-		$rooms = \App\Room::all();
+		//$rooms = \App\Room::all();
+		$rooms = DB::table('room')
+            ->leftjoin('media', 'room.id_media','=', 'media.id')
+            ->get();
 
 //        return view('pages.home', ['rooms' => $rooms]);
 		return view('pages.home', compact('rooms'));
