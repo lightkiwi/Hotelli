@@ -14,4 +14,6 @@ return [
 	'Friday'		 => 'Vendredi',
 	'Saturday'		 => 'Samedi',
 	'Sunday'		 => 'Dimanche',
+    'DateFormat'         => 'd/m/Y',
+    'TimeFormat'         => 'H:i:s',
 ];

@@ -18,27 +18,27 @@
 			<br>
 
 			<div class="form-row">
-				<div class="form-group col-md-3">
+				<div class="form-group col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
 					<label for="start">@lang('search.arrival')</label>
 					<input type="date" class="form-control" id="start" name="start"
 						   min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
 				</div>
-				<div class="form-group col-md-3">
+				<div class="form-group col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
 					<label for="end">@lang('search.departure')</label>
 					<input type="date" class="form-control" id="end" name="end"
 						   min="<?php echo date('Y-m-d'); ?>"
 						   value="<?php echo date('Y-m-d', time() + (60 * 60 * 24)); ?>">
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xl-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
 					<label for="room">@lang('search.rooms')</label>
 					<input type="number" class="form-control" id="room" name="room" min="0" max="10" value="1">
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xl-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
 					<label for="adult">@lang('search.adults')</label>
 					<input type="number" class="form-control" id="adult" name="adult" min="0" max="99"
 						   value="1">
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-xl-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
 					<label for="child">@lang('search.childrens')</label>
 					<input type="number" class="form-control" id="child" name="child" min="0" max="99"
 						   value="0">
