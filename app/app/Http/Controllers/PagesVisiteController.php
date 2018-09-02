@@ -7,6 +7,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 /**
  * Description of PagesVisiteController
  *
@@ -34,10 +36,10 @@ class PagesVisiteController
 		return view('pages.cgu');
 	}
 
-    public function cookies()
-    {
-        return view('pages.cookies');
-    }
+	public function cookies()
+	{
+		return view('pages.cookies');
+	}
 
 	public function contact()
 	{
@@ -74,7 +76,8 @@ class PagesVisiteController
 		}
 		//retour à la page d'accueil
 
-		return view('pages.home', compact('infoLogin'));
+		return redirect('/');
+//		return view('pages.home', compact('infoLogin'));
 	}
 
 	public function singin(Request $request)
@@ -82,5 +85,18 @@ class PagesVisiteController
 		$infoSignin = null;
 
 		return view('pages.home', compact('infoSignin'));
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function detail($id)
+	{
+		$room = \App\Room::leftJoin('media', 'room.id_media', '=', 'media.id')
+		 ->find($id);
+		return view('pages.room.room', compact('room'));
 	}
 }
