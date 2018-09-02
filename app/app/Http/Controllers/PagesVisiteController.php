@@ -7,6 +7,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 /**
  * Description of PagesVisiteController
  *
@@ -69,7 +71,8 @@ class PagesVisiteController
 		}
 		//retour à la page d'accueil
 
-		return view('pages.home', compact('infoLogin'));
+		return redirect('/');
+//		return view('pages.home', compact('infoLogin'));
 	}
 
 	public function singin(Request $request)

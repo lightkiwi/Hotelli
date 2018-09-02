@@ -39,30 +39,29 @@ Route::post('/login', 'PagesVisiteController@login');
 Route::post('/singin', 'PagesVisiteController@singin'); //------TODO
 
 /**
- * Fonction recherche ------------------TODO
+ * Fonction recherche
  */
-Route::post('/search', 'RoomController@index');
-Route::get('/search', function () {
-	return view('pages.home');
-});
+Route::get('/search', 'PagesVisiteController@index');
+Route::post('/search', 'PagesVisiteController@search'); //------TODO
 
 /**
  * Détail d'une chambre
  */
-Route::get('/room/{roomId}', 'RoomController@detail');
+Route::get('/room', 'PagesVisiteController@index');
+Route::get('/room/{roomId}', 'PagesVisiteController@detail'); //------TODO
 
 
 /**
  * Interface de gestion de compte (utilisateur standard)
  */
-Route::get('/account', 'UserController@account');
+Route::get('/account', 'UserController@account'); //------TODO
 
 
 /**
  * Interface d'administration (employés et administrateurs
  */
 Route::get('/admin', 'UserController@admin');
-Route::get('/admin/users', 'UserController@adminUsers');
-Route::get('/admin/hotel', 'UserController@adminHotel');
-Route::get('/admin/booking', 'UserController@adminBooking');
-Route::get('/admin/stat', 'UserController@adminStat');
+Route::get('/admin/users', 'UserController@adminUsers'); //------TODO
+Route::get('/admin/hotel', 'UserController@adminHotel'); //------TODO
+Route::get('/admin/booking', 'UserController@adminBooking'); //------TODO
+Route::get('/admin/stat', 'UserController@adminStat'); //------TODO
