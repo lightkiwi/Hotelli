@@ -9,7 +9,7 @@ return [
     'childrens' => 'Childrens',
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
-    'price' => 'Price',
+    'price' => 'Price/night',
     'score' => 'Rating',
     'area' => 'Surface',
     'booking' => 'Book',

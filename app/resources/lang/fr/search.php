@@ -9,7 +9,7 @@ return [
     'rooms' => 'Chambres',
     'adults' => 'Adultes',
     'childrens' => 'Enfants',
-    'price' => 'Prix',
+    'price' => 'Prix/nuit',
     'score' => 'Note',
     'area' => 'Surface',
     'booking' => 'Réserver',
