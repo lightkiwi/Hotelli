@@ -98,7 +98,7 @@
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" required="true" id="cguCheck"/>
 							<label class="form-check-label" for="cguCheck">
-								J'accepte les <a>CGU</a> <span class="red">*</span>
+								J'accepte les <a href="/cgu">conditions générales d'utilisation</a> <span class="red">*</span>
 							</label>
 						</div>
 						<div class="form-check">

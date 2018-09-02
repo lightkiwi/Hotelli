@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,19 +17,48 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
-        //$rooms = \App\Room::all();
-
+        //Si aucun des champs de recherche n'est rempli
         $rooms = DB::table('room')
-            ->leftjoin('media', 'room.id_media', '=', 'media.id')
+            ->leftjoin('media', 'room.id_media', '=', 'media.id');
+
+        if (!empty($request->input('searchField'))) {
+            /*$reservations = DB::table('reservation')
+                ->*/
             //->leftjoin('hotel', 'room.id_hotel','=', 'hotel.id')
             //->leftjoin('type', 'room.id_type','=', 'type.id')
             //->orderBy('room.' . $request->input('inlineRadioOptions'), (null !== $request->input('inlineCheckbox')) ? 'desc' : 'asc')
-            ->get([
-                'room.*',
-                'media.path',
-            ]);
+            //->where('room.')
+        }
 
-//        return view('pages.home', ['rooms' => $rooms]);
+        switch ($request->input('orderSelect')) {
+            case 'price_asc':
+                $rooms = $rooms->orderBy('room.price', 'asc');
+                break;
+            case 'price_desc':
+                $rooms = $rooms->orderBy('room.price', 'desc');
+                break;
+            case 'area_asc':
+                $rooms = $rooms->orderBy('room.area', 'asc');
+                break;
+            case 'area_desc':
+                $rooms = $rooms->orderBy('room.area', 'desc');
+                break;
+            case 'score_asc':
+                $rooms = $rooms->orderBy('room.score', 'asc');
+                break;
+            case 'score_desc':
+                $rooms = $rooms->orderBy('room.score', 'desc');
+                break;
+            default:
+                $rooms = $rooms->orderBy('room.id');
+                break;
+        };
+
+        $rooms = $rooms->get([
+            'room.*',
+            'media.path',
+        ]);
+
         return view('pages.home', compact('rooms'));
     }
 
@@ -61,7 +91,9 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
+        $room = \App\Room::leftJoin('media', 'room.id_media', '=', 'media.id')
+            ->find($id);
+        return view('pages.room.room', compact('room'));
     }
 
     /**
@@ -96,10 +128,5 @@ class RoomController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function detail()
-    {
-
     }
 }

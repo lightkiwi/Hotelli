@@ -28,6 +28,7 @@ Route::post('/', 'PagesVisiteController@index');
 Route::get('/', 'PagesVisiteController@index');
 Route::get('/faq', 'PagesVisiteController@faq'); //------TODO
 Route::get('/cgu', 'PagesVisiteController@cgu'); //------TODO
+Route::get('/cookies', 'PagesVisiteController@cookies'); //------TODO
 Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
 
 /**
@@ -49,7 +50,7 @@ Route::get('/search', function () {
 /**
  * Détail d'une chambre
  */
-Route::get('/room/{roomId}', 'RoomController@detail');
+Route::get('/room/{roomId}', 'RoomController@show');
 
 
 /**

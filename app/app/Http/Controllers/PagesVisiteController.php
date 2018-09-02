@@ -34,6 +34,11 @@ class PagesVisiteController
 		return view('pages.cgu');
 	}
 
+    public function cookies()
+    {
+        return view('pages.cookies');
+    }
+
 	public function contact()
 	{
 		return view('pages.contact');

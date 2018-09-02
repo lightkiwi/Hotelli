@@ -44,6 +44,22 @@
                                value="0">
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <label for="orderSelect">Filtre</label>
+                        <select class="form-control" name="orderSelect" id="orderSelect">
+                            <option value="none">Aucun</option>
+                            <option value="price_asc">Prix croissant</option>
+                            <option value="price_desc">Prix décroissant</option>
+                            <option value="area_asc">Surface croissante</option>
+                            <option value="area_desc">Surface décroissante</option>
+                            <option value="score_asc">Note croissante</option>
+                            <option value="score_desc">Note décroissante</option>
+                        </select>
+                    </div>
+                </div>
+
                 <br>
                 <input type="submit" value="Chercher" class="btn btn-danger">
             </form>
@@ -53,6 +69,7 @@
     @if (!empty($rooms))
         @foreach ($rooms as $room)
             <div class="opacity-article position-relative overflow-hidden p-4 bg-light">
+                {{ var_dump($room) }}
                 <div class="col-md-12 mx-auto my-5">
                     <div class="row">
                         <div class="col">

@@ -9,6 +9,7 @@ return [
     'administration' => 'Administration',
     'backToApp' => 'Back to the website',
     'current' => 'current',
+    'room' => 'room',
     /**
      * Order
      */

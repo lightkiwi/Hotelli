@@ -39,7 +39,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="/search">
             @csrf
-            <input class="form-control mr-sm-2" type="search" name="search_nav">
+            <input class="form-control mr-sm-2" type="search" name="searchField">
             <input class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="Chercher">
         </form>
     </div>

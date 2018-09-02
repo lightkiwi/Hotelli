@@ -4,6 +4,7 @@ return [
     'administration' => 'Administration',
     'backToApp' => 'Retour au site',
     'current' => 'Courant',
+    'room' => 'chambre',
     /**
      * Order
      */
