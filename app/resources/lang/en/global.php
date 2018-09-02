@@ -10,6 +10,9 @@ return [
     'backToApp' => 'Back to the website',
     'current' => 'current',
     'room' => 'room',
+    'result' => 'Result(s)',
+    'cancel' => 'Cancel',
+    'empty' => 'Empty the form',
     /**
      * Order
      */

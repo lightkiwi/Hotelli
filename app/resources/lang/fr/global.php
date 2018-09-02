@@ -5,6 +5,9 @@ return [
     'backToApp' => 'Retour au site',
     'current' => 'Courant',
     'room' => 'chambre',
+    'result' => 'Résultat(s)',
+    'cancel' => 'Annuler',
+    'empty' => 'Vider le formulaire',
     /**
      * Order
      */

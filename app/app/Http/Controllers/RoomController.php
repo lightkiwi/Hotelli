@@ -21,15 +21,55 @@ class RoomController extends Controller
         $rooms = DB::table('room')
             ->leftjoin('media', 'room.id_media', '=', 'media.id');
 
-        if (!empty($request->input('searchField'))) {
-            /*$reservations = DB::table('reservation')
-                ->*/
-            //->leftjoin('hotel', 'room.id_hotel','=', 'hotel.id')
-            //->leftjoin('type', 'room.id_type','=', 'type.id')
-            //->orderBy('room.' . $request->input('inlineRadioOptions'), (null !== $request->input('inlineCheckbox')) ? 'desc' : 'asc')
-            //->where('room.')
+        //Gestion de la recherche via la date saisie
+        $start = $request->input('start');
+        $end = $request->input('end');
+        if ((!empty($start) && !empty($end)) && (strtotime($start) <= strtotime($end))) {
+            //TODO: Requête pour trouver les chambres libres
+            $reservations = DB::table('reservation')
+                ->whereBetween('start', [$start, $end])
+                ->orwhereBetween('end', [$start, $end])
+                ->get(['id_room']);
+
+            $rooms_id = array();
+            foreach ($reservations->toArray() as $key_item => $item) {
+                $rooms_id[] = $item->id_room;
+            }
+
+            $rooms = $rooms->whereNotIn('room.id', $rooms_id);
+        } else {
+            $rooms = $rooms->where('room.id', '0');
         }
 
+        //Gestion de la recherche via des mots-clés
+        $keywords = $request->input('searchField');
+        if (!empty($keywords)) {
+            $keywords = explode(',', $keywords);
+
+            //Ex : ceci est une imbrication de clause where
+            $rooms = $rooms->where(function ($q) use ($keywords) {
+                //Recherche sur le titre de la chambre
+                foreach ($keywords as $keyword) {
+                    $q = $q->orWhere('room.title', 'LIKE', '%' . trim($keyword) . '%');
+                }
+
+                //Recherche sur la description de la chambre
+                foreach ($keywords as $keyword) {
+                    $q = $q->orWhere('room.description', 'LIKE', '%' . trim($keyword) . '%');
+                }
+            });
+        }
+
+        //Gestion de la recherche via le nombre de chambres
+        //TODO: Requête pour trouver les chambres libres en fonction du nombre indiqué
+
+        //Gestion de la recherche via le nombre d'enfants et d'adultes
+        $persons = $request->input('adult') + $request->input('child');
+        if (is_int((int)$persons)) {
+            $rooms = $rooms->Where('room.persons', '>=', (int)$persons);
+        }
+
+        // Gestion des filtres
         switch ($request->input('orderSelect')) {
             case 'price_asc':
                 $rooms = $rooms->orderBy('room.price', 'asc');
