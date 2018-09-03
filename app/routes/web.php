@@ -60,7 +60,7 @@ Route::get('/account', 'UserController@account'); //------TODO
 /**
  * Interface d'administration (employés et administrateurs
  */
-Route::get('/admin', 'UserController@admin');
+Route::get('/admin', 'PagesAdminController@index');
 Route::get('/admin/users', 'UserController@adminUsers'); //------TODO
 Route::get('/admin/hotel', 'UserController@adminHotel'); //------TODO
 Route::get('/admin/booking', 'UserController@adminBooking'); //------TODO

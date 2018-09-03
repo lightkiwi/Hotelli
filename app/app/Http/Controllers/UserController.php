@@ -105,11 +105,6 @@ class UserController extends Controller
 		return view('pages.account.home');
 	}
 
-	public function admin()
-	{
-		return view('pages.admin.home');
-	}
-
 	public function adminUsers()
 	{
 

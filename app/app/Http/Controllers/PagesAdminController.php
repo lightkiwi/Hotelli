@@ -17,6 +17,11 @@ class PagesAdminController
 
 	public function index()
 	{
+		return view('pages.admin.home');
+	}
+
+	public function listUsers()
+	{
 		$users = \App\User::all();
 
 		return view('pages.user.users', ['allUsers' => $users]);
