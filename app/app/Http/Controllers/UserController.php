@@ -104,24 +104,4 @@ class UserController extends Controller
 	{
 		return view('pages.account.home');
 	}
-
-	public function adminUsers()
-	{
-
-	}
-
-	public function adminHotel()
-	{
-
-	}
-
-	public function adminBooking()
-	{
-
-	}
-
-	public function adminStat()
-	{
-
-	}
 }

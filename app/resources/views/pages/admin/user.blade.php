@@ -7,7 +7,7 @@
 	<div class="col-md-12 mx-auto my-5">
 		<div class="flex-center position-ref full-height">
 			<div class="content">
-				<form method="POST" action="{{ config('app.url')}}/user">
+				<form method="POST" action="{{ config('app.url')}}/user/add">
 					@csrf
 					<h1> Enter Details to create a product</h1>
 					<div class="form-input">

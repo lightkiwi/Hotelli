@@ -26,4 +26,26 @@ class PagesAdminController
 
 		return view('pages.user.users', ['allUsers' => $users]);
 	}
+
+	public function showUsers()
+	{
+		$users = \App\User::all();
+
+		return view('pages.admin.users', ['allUsers' => $users]);
+	}
+
+	public function showHotel()
+	{
+
+	}
+
+	public function showBooking()
+	{
+
+	}
+
+	public function showStat()
+	{
+
+	}
 }

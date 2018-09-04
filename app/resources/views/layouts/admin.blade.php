@@ -5,10 +5,16 @@
 		@include('includes.admin.css')
 	</head>
 	<body>
+
 		@include('includes.admin.header')
-
-		@yield('content')
-
+		<div class="container-fluid">
+			<div class="row">
+				@include('includes.admin.nav')
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					@yield('content')
+				</main>
+			</div>
+		</div>
 		@include('includes.admin.footer')
 
 		@include('includes.admin.modal')
