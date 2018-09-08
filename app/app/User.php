@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
 	protected $profil;
-	protected $table = "user";
-	protected $fillable = [
+	protected $table	 = "user";
+	protected $fillable	 = [
 		'first_name',
 		'last_name',
 		'email',
@@ -22,8 +22,12 @@ class User extends Model
 		'ip_address',
 		'user_agent',
 	];
-	protected $hidden = [
+	protected $hidden	 = [
 		'',
 	];
 
+	public function setProfil()
+	{
+
+	}
 }
