@@ -17,10 +17,10 @@ class CreateReservationTable extends Migration
             $table->increments('id');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->integer('persons');
             $table->integer('id_user');
             $table->integer('id_room');
             $table->integer('id_specials')->nullable();
-            $table->integer('count_people');
             $table->timestamps();
         });
     }

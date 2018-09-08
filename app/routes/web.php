@@ -28,6 +28,7 @@ Route::post('/', 'PagesVisiteController@index');
 Route::get('/', 'PagesVisiteController@index');
 Route::get('/faq', 'PagesVisiteController@faq'); //------TODO
 Route::get('/cgu', 'PagesVisiteController@cgu'); //------TODO
+Route::get('/cookies', 'PagesVisiteController@cookies'); //------TODO
 Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
 
 /**
@@ -49,6 +50,7 @@ Route::post('/search', 'PagesVisiteController@search'); //------TODO
  */
 Route::get('/room', 'PagesVisiteController@index');
 Route::get('/room/{roomId}', 'PagesVisiteController@detail'); //------TODO
+//Route::get('/room/{roomId}', 'RoomController@show');
 
 
 /**
@@ -58,7 +60,7 @@ Route::get('/account', 'UserController@account'); //------TODO
 
 
 /**
- * Interface d'administration (employés et administrateurs
+ * Interface d'administration (employés et administrateurs)
  */
 Route::get('/admin', 'PagesAdminController@index');
 Route::get('/admin/users', 'PagesAdminController@showUsers'); //------TODO

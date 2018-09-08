@@ -7,9 +7,9 @@
         <div class="col-md-12 mx-auto my-5">
             <div class="row">
                 <div class="col">
-                    <h4>Conditions générales d'utilisation</h4>
+                    <h4>Gestion des cookies</h4>
                     <br>
-                    <p>CGU</p>
+                    <p>Cookies</p>
                 </div>
             </div>
         </div>
