@@ -21,4 +21,12 @@ return [
 	'tableStaff'	 => 'Employés',
 	'tableClient'	 => 'Clients',
 	'userFormTitle'	 => "Entrez les informations de l'utilisateur à créer.",
+	'createEntry'	 => "Ajouter",
+	//champs
+	'email'			 => 'email',
+	'first_name'	 => 'prénom',
+	'last_name'		 => 'nom',
+	'phone'			 => 'Téléphone',
+	'id_profil'		 => 'Profil',
+	'rgpd_date'		 => 'Date RGPD'
 ];

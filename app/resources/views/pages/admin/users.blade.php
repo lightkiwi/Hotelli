@@ -22,26 +22,26 @@
 			<form class="form-search">
 				<div class="input-append">
 					<input type="text" class="span2">
-					<button type="submit" class="btn">Search</button>
+					<button type="submit" class="btn">@lang('search.search')</button>
 				</div>
 			</form>
 		</div>
-		<a href="#" class="btn btn-lg btn-primary">
-			<span class="glyphicon glyphicon-plus"></span> Create new
+		<a href="#" class="btn btn-primary">
+			<span class="glyphicon glyphicon-plus"></span> @lang('admin.createEntry')
 		</a>
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-sm">
 			<thead>
-			<td>email</td>
-			<td>first_name</td>
-			<td>last_name</td>
-			<td>phone</td>
-			<td>password</td>
+			<td>@lang('admin.email')</td>
+			<td>@lang('admin.first_name')</td>
+			<td>@lang('admin.last_name')</td>
+			<td>@lang('admin.phone')</td>
+			<td>@lang('passwords.password')</td>
 <!--					<td>id_address</td>-->
-			<td>id_profil</td>
+			<td>@lang('admin.id_profil')</td>
 <!--					<td>id_gender</td>-->
-			<td>rgpd_date</td>
+			<td>@lang('admin.rgpd_date')</td>
 <!--					<td>newsletter</td>
 			<td>ip_address</td>
 			<td>user_agent</td>-->
@@ -55,7 +55,7 @@
 					<td class="inner-table">{{ $user->phone }}</td>
 					<td class="inner-table">{{ $user->password }}</td>
 <!--							<td class="inner-table">{{ $user->id_address }}</td>-->
-					<td class="inner-table">{{ $user->id_profil }}</td>
+					<td class="inner-table">{{ $user->profil }}</td>
 <!--							<td class="inner-table">{{ $user->id_gender }}</td>-->
 					<td class="inner-table">{{ $user->rgpd_date }}</td>
 <!--							<td class="inner-table">{{ $user->newsletter }}</td>
