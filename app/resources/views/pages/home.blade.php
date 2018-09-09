@@ -83,7 +83,6 @@
     @if (!empty($rooms) && (count($rooms) > 0))
         @foreach ($rooms as $room)
             <div class="opacity-article position-relative overflow-hidden p-4 bg-light">
-                {{ var_dump($room) }}
                 <div class="col-md-12 mx-auto my-5">
                     <div class="row">
                         <div class="col">

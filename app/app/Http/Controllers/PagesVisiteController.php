@@ -99,4 +99,11 @@ class PagesVisiteController
 		 ->find($id);
 		return view('pages.room.room', compact('room'));
 	}
+
+
+    public function search(Request $request)
+    {
+       $roomController = new RoomController();
+       return $roomController->index($request);
+    }
 }
