@@ -26,28 +26,17 @@
                             <span class="mr-4"><strong>@lang('search.area') : </strong>{{ $room->area }} m²</span>
                             <span class="mr-4"><strong>@lang('search.score') : </strong>{{ $room->score }}</span>
 
-                            <div style="overflow:hidden;">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div id="datetimepicker12"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                    $(function () {
-                                        $('#datetimepicker12').datetimepicker({
-                                            inline: true,
-                                            sideBySide: true
-                                        });
-                                    });
-                                </script>
+                            <br><br>
+                            <div class="form-group">
+                                <label for="dates"><strong>Date de réservation :</strong></label>
+                                <input type="text" name="dates">
                             </div>
                         </div>
                     </div>
                     <a href="/room/{{ $room->id }}" class="btn btn-dark float-right">@lang('search.booking')</a>
                 </div>
             </div>
+            <script type="text/javascript" src="{{ asset('js/room.js') }}"></script>
         @else
             @include('layouts.404')
         @endif

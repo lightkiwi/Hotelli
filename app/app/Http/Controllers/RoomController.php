@@ -25,7 +25,6 @@ class RoomController extends Controller
         $start = $request->input('start');
         $end = $request->input('end');
         if ((!empty($start) && !empty($end)) && (strtotime($start) <= strtotime($end))) {
-            //TODO: Requête pour trouver les chambres libres
             $reservations = DB::table('reservation')
                 ->whereBetween('start', [$start, $end])
                 ->orwhereBetween('end', [$start, $end])
