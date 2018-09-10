@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
  *
  * @author deepgreen
  */
-class PagesVisiteController
+class PagesVisiteController extends Controller
 {
 
 	/**
@@ -100,10 +100,9 @@ class PagesVisiteController
 		return view('pages.room.room', compact('room'));
 	}
 
-
-    public function search(Request $request)
-    {
-       $roomController = new RoomController();
-       return $roomController->index($request);
-    }
+	public function search(Request $request)
+	{
+		$roomController = new RoomController();
+		return $roomController->index($request);
+	}
 }

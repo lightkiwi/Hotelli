@@ -67,3 +67,7 @@ Route::get('/admin/users', 'PagesAdminController@showUsers'); //------TODO
 Route::get('/admin/hotel', 'PagesAdminController@showHotel'); //------TODO
 Route::get('/admin/booking', 'PagesAdminController@showBooking'); //------TODO
 Route::get('/admin/stat', 'PagesAdminController@showStat'); //------TODO
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
