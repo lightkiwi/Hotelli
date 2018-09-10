@@ -37,19 +37,19 @@ Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
 Route::get('/login', 'PagesVisiteController@index');
 Route::get('/singin', 'PagesVisiteController@index');
 Route::post('/login', 'PagesVisiteController@login');
-Route::post('/singin', 'PagesVisiteController@singin'); //------TODO
+//Route::post('/singin', 'PagesVisiteController@singin'); //------TODO
 
 /**
  * Fonction recherche
  */
 Route::get('/search', 'PagesVisiteController@index');
-Route::post('/search', 'PagesVisiteController@search'); //------TODO
+//Route::post('/search', 'PagesVisiteController@search'); //------TODO
 
 /**
  * Détail d'une chambre
  */
 Route::get('/room', 'PagesVisiteController@index');
-Route::get('/room/{roomId}', 'PagesVisiteController@detail'); //------TODO
+//Route::get('/room/{roomId}', 'PagesVisiteController@detail'); //------TODO
 //Route::get('/room/{roomId}', 'RoomController@show');
 
 
