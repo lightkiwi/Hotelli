@@ -48,7 +48,7 @@ class PagesAdminController extends Controller
 
 	public function showHotel()
 	{
-
+		return view('pages.admin.hotel');
 	}
 
 	public function showBooking()
