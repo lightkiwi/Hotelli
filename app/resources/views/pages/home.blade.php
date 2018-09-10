@@ -54,13 +54,34 @@
                     <div class="form-group col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <label for="orderSelect">Filtre</label>
                         <select class="form-control" name="orderSelect" id="orderSelect">
-                            <option value="none" @if(isset($_POST['orderSelect']) && ('none' == $_POST['orderSelect'])) selected @endif>Aucun</option>
-                            <option value="price_asc" @if(isset($_POST['orderSelect']) && ('price_asc' == $_POST['orderSelect'])) selected @endif>Prix croissant</option>
-                            <option value="price_desc" @if(isset($_POST['orderSelect']) && ('price_desc' == $_POST['orderSelect'])) selected @endif>Prix décroissant</option>
-                            <option value="area_asc" @if(isset($_POST['orderSelect']) && ('area_asc' == $_POST['orderSelect'])) selected @endif>Surface croissante</option>
-                            <option value="area_desc" @if(isset($_POST['orderSelect']) && ('area_desc' == $_POST['orderSelect'])) selected @endif>Surface décroissante</option>
-                            <option value="score_asc" @if(isset($_POST['orderSelect']) && ('score_asc' == $_POST['orderSelect'])) selected @endif>Note croissante</option>
-                            <option value="score_desc" @if(isset($_POST['orderSelect']) && ('score_desc' == $_POST['orderSelect'])) selected @endif>Note décroissante</option>
+                            <option value="none"
+                                    @if(isset($_POST['orderSelect']) && ('none' == $_POST['orderSelect'])) selected @endif>
+                                Aucun
+                            </option>
+                            <option value="price_asc"
+                                    @if(isset($_POST['orderSelect']) && ('price_asc' == $_POST['orderSelect'])) selected @endif>
+                                Prix croissant
+                            </option>
+                            <option value="price_desc"
+                                    @if(isset($_POST['orderSelect']) && ('price_desc' == $_POST['orderSelect'])) selected @endif>
+                                Prix décroissant
+                            </option>
+                            <option value="area_asc"
+                                    @if(isset($_POST['orderSelect']) && ('area_asc' == $_POST['orderSelect'])) selected @endif>
+                                Surface croissante
+                            </option>
+                            <option value="area_desc"
+                                    @if(isset($_POST['orderSelect']) && ('area_desc' == $_POST['orderSelect'])) selected @endif>
+                                Surface décroissante
+                            </option>
+                            <option value="score_asc"
+                                    @if(isset($_POST['orderSelect']) && ('score_asc' == $_POST['orderSelect'])) selected @endif>
+                                Note croissante
+                            </option>
+                            <option value="score_desc"
+                                    @if(isset($_POST['orderSelect']) && ('score_desc' == $_POST['orderSelect'])) selected @endif>
+                                Note décroissante
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -98,7 +119,19 @@
                             <span class="mr-4"><strong>@lang('search.score') : </strong>{{ $room->score }}</span>
                         </div>
                     </div>
-                    <a href="/room/{{ $room->id }}" class="btn btn-dark float-right">@lang('search.booking')</a>
+
+                    <?php
+                    $request = http_build_query(array(
+                        'start'=>$_POST['start'],
+                        'end'=>$_POST['end'],
+                        'room'=>$_POST['room'],
+                        'adult'=>$_POST['adult'],
+                        'child'=>$_POST['child'],
+                    ));
+                    ?>
+
+                    <a href="/room/{{ $room->id }}?{{ $request }}"
+                       class="btn btn-dark float-right">@lang('search.booking')</a>
                 </div>
             </div>
         @endforeach

@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-    <form action="/search" method="post">
+    <form action="/room" method="post">
         @csrf
         @if (!empty($room))
             <div class="opacity-article position-relative overflow-hidden p-4 bg-light">
@@ -29,13 +29,21 @@
                             <br><br>
                             <div class="form-group">
                                 <label for="dates"><strong>Date de réservation :</strong></label>
-                                <input type="text" name="dates">
+                                <?php
+                                $date_range = date('d/m/Y', strtotime($request['start'])) . ' - ' . date('d/m/Y', strtotime($request['end']));
+                                ?>
+
+                                <input type="text" name="dates" value="{{ $date_range }}">
                             </div>
                         </div>
                     </div>
-                    <a href="/room/{{ $room->id }}" class="btn btn-dark float-right">@lang('search.booking')</a>
+
+                    <input type="submit" class="btn btn-dark float-right" value="@lang('search.booking')">
                 </div>
             </div>
+            <script>
+                var dates = @json($dates);
+            </script>
             <script type="text/javascript" src="{{ asset('js/room.js') }}"></script>
         @else
             @include('layouts.404')
