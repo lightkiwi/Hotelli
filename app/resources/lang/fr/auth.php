@@ -25,4 +25,6 @@ return [
 	'cgu_accept'	 => "J'accepte les conditions générales d'utilisation",
 	'cgu_detail'	 => "(CGU)",
 	'newsletter'	 => "Inscription à la newsletter",
+	'remember_me'	 => "Se souvenir de moi",
+	'email_adress'	 => "Adresse email",
 ];

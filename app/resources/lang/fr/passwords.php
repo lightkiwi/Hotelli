@@ -17,4 +17,5 @@ return [
 	'sent'				 => 'Nous vous avons envoyé un email pour réinitialiser votre mot de passe.',
 	'token'				 => 'Ce lien de réinitialisation est invalide.',
 	'user'				 => "Authentification échouée, veuillez vérifier le couple email / mot de passe.",
+	'forgot'			 => "Mot de passe oublié ?",
 ];
