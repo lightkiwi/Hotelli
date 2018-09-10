@@ -7,40 +7,52 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="ml-auto navbar-nav mr-4">
-            @if(isset($_SESSION['connected']) && $_SESSION['connected'] && ($_SESSION['profil']['id'] === 1 || $_SESSION['profil']['id'] === 2))
+			@guest
+			<!--	<li class="nav-item">
+					<a id="nav-link-login" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#loginModalCentered">Connexion</a>
+				</li>
+				<li class="nav-item">
+					<a id="nav-link-signin" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#signinModalCentered">Inscription</a>
+				</li>-->
 			<li class="nav-item">
-				<a class="nav-link" href="/account">Administration</a>
+				<a class="nav-link nav-link-login" href="{{ route('login') }}">@lang('auth.login')</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/disconnect">Déconnexion</a>
+				<a class="nav-link nav-link-signin" href="{{ route('register') }}">@lang('auth.register')</a>
 			</li>
-            @elseif(isset($_SESSION['connected']) && $_SESSION['connected'])
+            @else
+			@if(Auth::user()->id_profil === 1 || Auth::user()->id_profil === 2)
 			<li class="nav-item">
-				<a class="nav-link" href="/account">Gestion du compte</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/disconnect">Déconnexion</a>
+				<a class="nav-link" href="/admin">@lang('global.administration')</a>
 			</li>
             @else
 			<li class="nav-item">
-				<!--				<button type="button" class="btn btn-link nav-link" data-toggle="modal" data-target="#loginModalCentered">Connexion</button>-->
-				<a id="nav-link-login" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#loginModalCentered">Connexion</a>
+				<a class="nav-link" href="/account">@lang('global.account')</a>
 			</li>
-            <li class="nav-item">
-				<a id="nav-link-signin" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#signinModalCentered">Inscription</a>
-            </li>
+			@endif
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('logout') }}"
+				   onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+					@lang('auth.logout')
+				</a>
+
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+					@csrf
+				</form>
+			</li>
 			@endif
             <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact</a>
+                <a class="nav-link" href="/contact">@lang('global.contact')</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/faq">FAQ</a>
+                <a class="nav-link" href="/faq">@lang('global.faq')</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" method="post" action="/search">
-            @csrf
-            <input class="form-control mr-sm-2" type="search" name="searchField">
-            <input class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="Chercher">
-        </form>
-    </div>
+		<!--        <form class="form-inline my-2 my-lg-0" method="post" action="/search">
+					@csr					f
+						 <input class="form-control mr-sm-2" type="search" name="searchField">
+						 <input class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="Chercher">
+					 </form>-->
+	</div>
 </nav>

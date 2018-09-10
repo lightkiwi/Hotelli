@@ -21,6 +21,8 @@ Route::resource('/user', 'UserController');
 //Route::resource('/media', 'MediaController');
 //Route::resource('/comment', 'CommentController');
 
+Auth::routes();
+
 /**
  * Routes des pages principales
  */
@@ -34,10 +36,11 @@ Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
 /**
  * Fonction login et inscription
  */
-Route::get('/login', 'PagesVisiteController@index');
-Route::get('/singin', 'PagesVisiteController@index');
-Route::post('/login', 'PagesVisiteController@login');
-Route::post('/singin', 'PagesVisiteController@singin'); //------TODO
+//Route::get('/login', 'PagesVisiteController@index')->name('home');
+//Route::get('/singin', 'PagesVisiteController@index');
+//Route::post('/login', 'PagesVisiteController@login');
+//Route::post('/singin', 'PagesVisiteController@singin'); //------TODO
+//Route::post('/disconnect', 'PagesVisiteController@disconnect');
 
 /**
  * Fonction recherche
@@ -68,6 +71,5 @@ Route::get('/admin/hotel', 'PagesAdminController@showHotel'); //------TODO
 Route::get('/admin/booking', 'PagesAdminController@showBooking'); //------TODO
 Route::get('/admin/stat', 'PagesAdminController@showStat'); //------TODO
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

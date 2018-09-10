@@ -39,3 +39,6 @@ a.nav-link-cursor {
 span.red {
     color: red;
 }
+.nav-item {
+    text-transform: capitalize;
+}

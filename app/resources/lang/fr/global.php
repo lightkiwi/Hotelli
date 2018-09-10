@@ -1,7 +1,10 @@
 <?php
 return [
 	'welcome'		 => 'Accueil',
-	'administration' => 'Administration',
+	'administration' => 'administration',
+	'account'		 => 'gestion du compte',
+	'contact'		 => 'contact',
+	'faq'			 => 'FAQ',
 	'backToApp'		 => 'Retour au site',
 	'current'		 => 'courant',
 	'room'			 => 'chambre',

@@ -20,6 +20,7 @@ class CreateUserTable extends Migration
 			$table->string('first_name', 50);
 			$table->string('last_name', 50);
 			$table->string('email', 150)->unique();
+			$table->timestamp('email_verified_at')->nullable();
 			$table->string('phone', 20)->nullable();
 			$table->string('password');
 			$table->integer('id_address')->nullable();
@@ -29,6 +30,7 @@ class CreateUserTable extends Migration
 			$table->boolean('newsletter')->default(false);
 			$table->ipAddress('ip_address')->default('0.0.0.0');
 			$table->string('user_agent')->default('nc');
+			$table->rememberToken();
 			$table->timestamps();
 		});
 	}

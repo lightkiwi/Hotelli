@@ -9,6 +9,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//use Illuminate\Support\Facades\Auth;
+
 /**
  * Description of PagesVisiteController
  *
@@ -23,6 +25,7 @@ class PagesVisiteController extends Controller
 	 */
 	public function index()
 	{
+//		dd(Auth::user()->id_profil);
 		return view('pages.home');
 	}
 
@@ -62,7 +65,7 @@ class PagesVisiteController extends Controller
 			'etat'	 => false,
 			'info'	 => 'Connexion échouée, merci de vérifier vos identifiants de connexion'
 		];
-		//vérification du login
+//vérification du login
 		if ($request->input('loginModalFormEmail') !== null && $request->input('loginModalFormPassword') !== null) {
 
 			$_SESSION['connected']		 = true;
@@ -74,7 +77,7 @@ class PagesVisiteController extends Controller
 		} else {
 			$infoLogin = $loginKo;
 		}
-		//retour à la page d'accueil
+//retour à la page d'accueil
 
 		return redirect('/');
 //		return view('pages.home', compact('infoLogin'));
@@ -85,6 +88,15 @@ class PagesVisiteController extends Controller
 		$infoSignin = null;
 
 		return view('pages.home', compact('infoSignin'));
+	}
+
+	/**
+	 *
+	 * @param Request $request
+	 */
+	public function disconnect()
+	{
+
 	}
 
 	/**
