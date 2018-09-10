@@ -52,7 +52,8 @@ Route::post('/search', 'PagesVisiteController@search'); //------TODO
  * Détail d'une chambre
  */
 Route::get('/room', 'PagesVisiteController@index');
-Route::get('/room/{roomId}', 'PagesVisiteController@detail'); //------TODO
+Route::get('/room/{roomId}', 'PagesVisiteController@detail');
+Route::post('/room', 'PagesVisiteController@store'); //------TODO
 //Route::get('/room/{roomId}', 'RoomController@show');
 
 
