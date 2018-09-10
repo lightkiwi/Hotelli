@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use MongoDB\BSON\Javascript;
@@ -127,7 +128,11 @@ class PagesVisiteController extends Controller
     {
         // validate
         // read more on validation at http://laravel.com/docs/validation
-        return Redirect::to('/');
+        if(Auth::check()){
+            return Redirect::to('/');
+        }else{
+            return Redirect::to('/login');
+        }
     }
 
     public function search(Request $request)
