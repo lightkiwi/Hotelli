@@ -19,10 +19,6 @@
 	</div>
 </div>
 
-<div class="col-md-12 center">
-	<canvas class="my-4" id="myChart" width="900" height="380"></canvas>
-</div>
-
 <h2>@lang('admin.lastBooking')</h2>
 <div class="table-responsive">
 	<table class="table table-striped table-sm">
@@ -79,6 +75,10 @@
 			</tr>
 		</tbody>
 	</table>
+</div>
+
+<div class="col-md-12 center">
+	<canvas class="my-4" id="myChart" width="900" height="380"></canvas>
 </div>
 
 @stop

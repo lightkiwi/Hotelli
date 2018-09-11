@@ -42,7 +42,7 @@ class UserController extends Controller
 			'last_name'	 => $request->get('last_name'),
 			'email'		 => $request->get('email'),
 			'phone'		 => $request->get('phone'),
-			'password'	 => $request->get('password'),
+			'password'	 => Hash::make($request->get('password')),
 			'id_address' => $request->get('id_address'),
 			'id_profil'	 => $request->get('id_profil'),
 			'id_gender'	 => $request->get('id_gender'),
@@ -53,26 +53,6 @@ class UserController extends Controller
 		]);
 
 		return redirect('/users');
-	}
-
-	public function storeAdm(Request $request)
-	{
-		\App\User::create([
-			'first_name' => $request->get('first_name'),
-			'last_name'	 => $request->get('last_name'),
-			'email'		 => $request->get('email'),
-			'phone'		 => $request->get('phone'),
-			'password'	 => $request->get('password'),
-			'id_address' => $request->get('id_address'),
-			'id_profil'	 => $request->get('id_profil'),
-			'id_gender'	 => $request->get('id_gender'),
-			'rgpd_date'	 => $request->get('rgpd_date'),
-			'newsletter' => $request->get('newsletter'),
-			'ip_address' => $request->get('ip_address'),
-			'user_agent' => $request->get('user_agent'),
-		]);
-
-		return redirect('/admin/users');
 	}
 
 	/**

@@ -26,8 +26,8 @@
 			</form>
 		</div>
 	</div>
+	@if (count($allUsers) > 0)
 	<div class="table-responsive">
-		@if (count($allUsers) > 0)
 		<table class="table table-striped table-sm">
 			<thead>
 			<td>@lang('admin.email')</td>
@@ -64,8 +64,8 @@
 				<div class="mb-4 lead">@lang('admin.no_client')</div>
 			</div>
 		</div>
-		@endif
 	</div>
+	@endif
 </div>
 
 <!-- modal d'inscription -->
@@ -118,12 +118,6 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" required name="cguCheck"/>
-							<label class="form-check-label" for="cguCheck">
-								@lang('auth.cgu_accept')&nbsp;<a href="/cgu" target="_blank">@lang('auth.cgu_detail')</a> <span class="red">*</span>
-							</label>
-						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="newsCheck" value="t">
 							<label class="form-check-label" for="newsCheck">

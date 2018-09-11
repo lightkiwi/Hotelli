@@ -8,38 +8,121 @@
 <!-- Icons -->
 <script src="{{ asset('js/feather.min.js') }}"></script>
 <script>
-feather.replace();
-</script>
+feather.replace();</script>
 
 <!-- Graphs -->
 <script src="{{ asset('js/Chart2.7.1.min.js') }}"></script>
 <script>
 var ctx = document.getElementById("myChart");
+var ctx1 = document.getElementById("myChart1");
+var ctx2 = document.getElementById("myChart2");
+var ctx3 = document.getElementById("myChart3");
 var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
+type: 'line',
+        data: {
         labels: ["@lang('global.Monday')", "@lang('global.Tuesday')", "@lang('global.Wednesday')", "@lang('global.Thursday')", "@lang('global.Friday')", "@lang('global.Saturday')", "@lang('global.Sunday')"],
-        datasets: [{
+                datasets: [{
                 label: '@lang('admin.statBooking')',
                         data: [39, 45, 83, 03, 29, 22, 34],
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: '#007bff',
-                borderWidth: 4,
-                pointBackgroundColor: '#007bff'
-            }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                    ticks: {
-                        beginAtZero: false
-                    }
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#007bff'
                 }]
         },
-        legend: {
-            display: true,
+        options: {
+        scales: {
+        yAxes: [{
+        ticks: {
+        beginAtZero: false
         }
-    }
+        }]
+        },
+                legend: {
+                display: true,
+                }
+        }
+});
+var myChart1 = new Chart(ctx1, {
+type: 'line',
+        data: {
+        labels: ["@lang('global.Monday')", "@lang('global.Tuesday')", "@lang('global.Wednesday')", "@lang('global.Thursday')", "@lang('global.Friday')", "@lang('global.Saturday')", "@lang('global.Sunday')"],
+                datasets: [{
+                label: '@lang('admin.statBooking')',
+                        data: [39, 45, 83, 03, 29, 22, 34],
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#007bff'
+                }]
+        },
+        options: {
+        scales: {
+        yAxes: [{
+        ticks: {
+        beginAtZero: false
+        }
+        }]
+        },
+                legend: {
+                display: true,
+                }
+        }
+});
+var myChart2 = new Chart(ctx2, {
+type: 'line',
+        data: {
+        labels: ["@lang('global.Monday')", "@lang('global.Tuesday')", "@lang('global.Wednesday')", "@lang('global.Thursday')", "@lang('global.Friday')", "@lang('global.Saturday')", "@lang('global.Sunday')"],
+                datasets: [{
+                label: '@lang('admin.statBooking')',
+                        data: [39, 45, 83, 03, 29, 22, 34],
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#007bff'
+                }]
+        },
+        options: {
+        scales: {
+        yAxes: [{
+        ticks: {
+        beginAtZero: false
+        }
+        }]
+        },
+                legend: {
+                display: true,
+                }
+        }
+});
+var myChart3 = new Chart(ctx3, {
+type: 'line',
+        data: {
+        labels: ["@lang('global.Monday')", "@lang('global.Tuesday')", "@lang('global.Wednesday')", "@lang('global.Thursday')", "@lang('global.Friday')", "@lang('global.Saturday')", "@lang('global.Sunday')"],
+                datasets: [{
+                label: '@lang('admin.statBooking')',
+                        data: [39, 45, 83, 03, 29, 22, 34],
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#007bff'
+                }]
+        },
+        options: {
+        scales: {
+        yAxes: [{
+        ticks: {
+        beginAtZero: false
+        }
+        }]
+        },
+                legend: {
+                display: true,
+                }
+        }
 });
 </script>

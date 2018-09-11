@@ -75,9 +75,12 @@ Route::get('/admin/billing', 'PagesAdminController@showBilling'); //------TODO
 Route::get('/admin/clients', 'PagesAdminController@showClients'); //------TODO
 //administrateurs
 Route::get('/admin/users', 'PagesAdminController@showUsers');
-Route::post('/admin/users/add', 'PagesAdminController@addUsers');
+Route::post('/admin/users/add', 'PagesAdminController@addUser');
+Route::get('/admin/users/del/{id}', ['uses' => 'PagesAdminController@deleteUser']);
 Route::get('/admin/hotel', 'PagesAdminController@showHotel'); //------TODO
-Route::get('/admin/rooms', 'PagesAdminController@showRooms'); //------TODO
+Route::get('/admin/rooms', 'PagesAdminController@showRooms');
+Route::get('/admin/rooms/add', 'PagesAdminController@addRoom');
+Route::get('/admin/rooms/del/{id}', ['uses' => 'PagesAdminController@deleteRoom']);
 Route::get('/admin/stat', 'PagesAdminController@showStats'); //------TODO
 
 

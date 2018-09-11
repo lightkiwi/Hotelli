@@ -102,3 +102,7 @@ body {
     cursor: pointer;
     background-color: lightgrey;
 }
+
+.tr-selected {
+    background-color: lightgrey !important;
+}
