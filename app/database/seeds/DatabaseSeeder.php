@@ -84,6 +84,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@hotelli.fr',
             'phone' => '0424422442',
             'password' => Hash::make('hotelli'),
+            'id_address'=>'1',
             'id_profil' => 1,
             'id_gender' => 4,
         ]);
@@ -93,6 +94,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'employe@hotelli.fr',
             'phone' => '0424422442',
             'password' => Hash::make('hotelli'),
+            'id_address'=>'1',
             'id_profil' => 2,
             'id_gender' => 4,
         ]);
@@ -102,6 +104,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@hotelli.fr',
             'phone' => '0424422442',
             'password' => Hash::make('hotelli'),
+            'id_address'=>'1',
             'id_profil' => 3,
             'id_gender' => 4,
         ]);

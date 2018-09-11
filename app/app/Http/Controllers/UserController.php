@@ -2,106 +2,103 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
+use App\Gender;
+use App\Reservation;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function account()
+    {
+        $user = User::leftJoin('address', 'user.id_address', '=', 'address.id')
+            ->leftJoin('gender', 'user.id_gender', '=', 'gender.id')
+            ->where('user.id', '=', Auth::user()->id)
+            ->select([
+                'user.id',
+                'user.first_name',
+                'user.last_name',
+                'user.email',
+                'user.phone',
+                'user.rgpd_date',
+                'user.newsletter',
+                'address.address_line',
+                'address.city',
+                'address.region',
+                'address.zip',
+                'address.country',
+                'gender.label as gender',
+            ])
+            ->get()
+            ->toArray();
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index()
-	{
-		$users = \App\User::all();
+        $user = is_array($user) ? $user[0] : null;
 
-		return view('pages.user.users', ['allUsers' => $users]);
-	}
+        $genders = Gender::all();
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create()
-	{
-		return view('pages.user.user');
-	}
+        return view('pages.account.account', compact('user', 'genders'));
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request)
-	{
-		\App\User::create([
-			'first_name' => $request->get('first_name'),
-			'last_name'	 => $request->get('last_name'),
-			'email'		 => $request->get('email'),
-			'phone'		 => $request->get('phone'),
-			'password'	 => Hash::make($request->get('password')),
-			'id_address' => $request->get('id_address'),
-			'id_profil'	 => $request->get('id_profil'),
-			'id_gender'	 => $request->get('id_gender'),
-			'rgpd_date'	 => $request->get('rgpd_date'),
-			'newsletter' => $request->get('newsletter'),
-			'ip_address' => $request->get('ip_address'),
-			'user_agent' => $request->get('user_agent'),
-		]);
+    public function update(Request $request)
+    {
+        $non_upd_user = User::find($request->input('id'));
 
-		return redirect('/users');
-	}
+        $non_upd_user->first_name = $request->input('first_name');
+        $non_upd_user->last_name = $request->input('last_name');
+        $non_upd_user->email = $request->input('email');
+        $non_upd_user->phone = $request->input('phone');
+        $non_upd_user->newsletter = empty($request->input('newsletter')) ? false : true;
+        $non_upd_user->id_gender = $request->input('genders');
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+        $non_upd_user->save();
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+        $address = Address::find($non_upd_user->id_address);
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id)
-	{
-		//
-	}
+        $address->address_line = $request->input('address_line');
+        $address->city = $request->input('city');
+        $address->region = $request->input('region');
+        $address->zip = $request->input('zip');
+        $address->country = $request->input('country');
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+        $address->save();
 
-	public function account()
-	{
-		return view('pages.account.home');
-	}
+        $user = User::leftJoin('address', 'user.id_address', '=', 'address.id')
+            ->leftJoin('gender', 'user.id_gender', '=', 'gender.id')
+            ->where('user.id', '=', Auth::user()->id)
+            ->select([
+                'user.id',
+                'user.first_name',
+                'user.last_name',
+                'user.email',
+                'user.phone',
+                'user.rgpd_date',
+                'user.newsletter',
+                'address.address_line',
+                'address.city',
+                'address.region',
+                'address.zip',
+                'address.country',
+                'gender.label as gender',
+            ])
+            ->get()
+            ->toArray();
+
+        $user = is_array($user) ? $user[0] : null;
+
+        $genders = Gender::all();
+
+        return view('pages.account.account', compact('user', 'genders'));
+    }
+
+    public function booking()
+    {
+        $reservations = Reservation::leftJoin('room', 'reservation.id_room', '=', 'room.id')
+            ->where('reservation.id_user', '=', Auth::user()->id)
+            ->get()
+            ->toArray();
+
+        return view('pages.account.booking', compact('reservations'));
+    }
 }

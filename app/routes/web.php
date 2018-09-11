@@ -63,6 +63,9 @@ Route::post('/room', 'PagesVisiteController@store'); //------TODO
  * Interface de gestion de compte (utilisateur standard)
  */
 Route::get('/account', 'UserController@account'); //------TODO
+Route::post('/account', 'UserController@update'); //------TODO
+Route::get('/account/booking', 'UserController@booking'); //------TODO
+Route::get('/account/booking/{id}/{id_user}', 'ReservationController@destroy'); //------TODO
 
 
 /**

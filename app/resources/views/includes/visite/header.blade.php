@@ -24,7 +24,7 @@
 				<a class="nav-link" href="/account">@lang('global.account')</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/accoun/booking">@lang('global.my_resa')</a>
+				<a class="nav-link" href="/account/booking">@lang('global.my_resa')</a>
 			</li>
 			@endif
 			<li class="nav-item">
