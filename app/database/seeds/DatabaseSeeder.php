@@ -79,12 +79,30 @@ class DatabaseSeeder extends Seeder
 
         //initialisation utilisateurs
         DB::table('user')->insert([
-            'first_name' => 'root',
+            'first_name' => 'admin',
             'last_name' => 'hotelli',
-            'email' => 'contact@hotelli.fr',
+            'email' => 'admin@hotelli.fr',
             'phone' => '0424422442',
             'password' => Hash::make('hotelli'),
             'id_profil' => 1,
+            'id_gender' => 4,
+        ]);
+        DB::table('user')->insert([
+            'first_name' => 'employe',
+            'last_name' => 'hotelli',
+            'email' => 'employe@hotelli.fr',
+            'phone' => '0424422442',
+            'password' => Hash::make('hotelli'),
+            'id_profil' => 2,
+            'id_gender' => 4,
+        ]);
+        DB::table('user')->insert([
+            'first_name' => 'user',
+            'last_name' => 'hotelli',
+            'email' => 'user@hotelli.fr',
+            'phone' => '0424422442',
+            'password' => Hash::make('hotelli'),
+            'id_profil' => 3,
             'id_gender' => 4,
         ]);
 
