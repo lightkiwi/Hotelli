@@ -91,3 +91,14 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+/*
+* Tableaux
+*/
+.table-striped tbody tr {
+    cursor: pointer;
+}
+.table-striped tbody tr:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}

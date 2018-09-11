@@ -1,5 +1,13 @@
 <?php
 return [
+	/**
+	 * Config Hotel
+	 */
+	'hotel_name'		 => 'Grand Budapest Hôtel',
+	'hotel_tel'			 => '04.24.42.24.42',
+	/**
+	 * global
+	 */
 	'welcome'			 => 'Accueil',
 	'administration'	 => 'administration',
 	'account'			 => 'gestion du compte',

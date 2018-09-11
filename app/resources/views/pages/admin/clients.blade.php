@@ -1,29 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-@lang('admin.staff')
+@lang('admin.clients')
 @stop
 
 @section('content')
-<h1>@lang('admin.listUsers')</h1>
+<h1>@lang('admin.clients')</h1>
 
 <div class="flex-center position-ref full-height">
 	<div class="row toolbar">
-		<div class="span2 p-2">
-			<div class="btn-group pull-right" data-toggle="buttons-radio">
-				<button class="btn active">@lang('admin.tableAll')</button>
-				<button class="btn">@lang('admin.tableStaff')</button>
-				<button class="btn">@lang('admin.tableClient')</button>
-			</div>
-		</div>
-		<div class="span4 p-2">
-			<form class="form-search">
-				<div class="input-append">
-					<input type="text" class="span2" disabled>
-					<button type="submit" class="btn" disabled>@lang('search.search')</button>
-				</div>
-			</form>
-		</div>
 		<div class="span2 p-2">
 			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#signinModalCentered">
 				<span data-feather="user-plus"></span> @lang('admin.createEntry')
@@ -32,15 +17,23 @@
 				<span data-feather="user-plus"></span> Réinitialiser le mot de passe
 			</button>
 		</div>
+		<div class="span4 p-2 float-right">
+			<form class="form-search">
+				<div class="input-append">
+					<input type="text" class="span2" disabled>
+					<button type="submit" class="btn" disabled>@lang('search.search')</button>
+				</div>
+			</form>
+		</div>
 	</div>
 	<div class="table-responsive">
+		@if (count($allUsers) > 0)
 		<table class="table table-striped table-sm">
 			<thead>
 			<td>@lang('admin.email')</td>
 			<td>@lang('admin.first_name')</td>
 			<td>@lang('admin.last_name')</td>
 			<td>@lang('admin.phone')</td>
-			<td>@lang('admin.id_profil')</td>
 			<td>@lang('admin.rgpd_date')</td>
 			<td>@lang('admin.newsletter')</td>
 			</thead>
@@ -51,7 +44,6 @@
 					<td>{{ $user->first_name }}</td>
 					<td class="inner-table">{{ $user->last_name }}</td>
 					<td class="inner-table">{{ $user->phone }}</td>
-					<td class="inner-table">{{ $user->label }}</td>
 					<td class="inner-table">{{ $user->rgpd_date }}</td>
 					<td class="inner-table">
 						<?php
@@ -66,6 +58,13 @@
 				@endforeach
 			</tbody>
 		</table>
+		@else
+		<div class="row justify-content-center">
+			<div class="col-md-12 text-center">
+				<div class="mb-4 lead">@lang('admin.no_client')</div>
+			</div>
+		</div>
+		@endif
 	</div>
 </div>
 
@@ -86,26 +85,22 @@
 					<label for="signinInputEmail">@lang('auth.primary')</label>
 					<div class="form-row">
 						<div class="form-group col-md-4">
-							<input type="text" class="form-control" name="first_name" placeholder="Prénom">
+							<input type="text" class="form-control" id="signinInputPrenom" name="first_name" placeholder="Prénom">
 						</div>
 						<div class="form-group col-md-4">
-							<input type="text" class="form-control" name="last_name" placeholder="Nom" required>
+							<input type="text" class="form-control" id="signinInputNom" name="last_name" placeholder="Nom" required>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="password" class="form-control" name="password" required="true" placeholder="Password">
+							<input type="password" class="form-control" id="signinInputPassword" name="password" required="true" placeholder="Password">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-8">
-							<input type="email" class="form-control" name="email" required placeholder="Email">
+							<input type="email" class="form-control" id="signinInputEmail" name="email" required placeholder="Email">
 						</div>
-						<div class="form-group col-md-4">
-							<select class="form-control" name="id_profil">
-								@foreach ($profils as $profil)
-								<option value="{{ $profil->id }}">{{ $profil->label }}</option>
-								@endforeach
-							</select>
-						</div>
+						<!--	<div class="form-group col-md-4">
+							<input type="password" class="form-control" id="signinInputPasswordConf" name="password" required placeholder="Password Confirm">
+						</div>-->
 					</div>
 					<div class="form-group">
 						<label for="signinInputAddress">@lang('auth.complementary')</label>

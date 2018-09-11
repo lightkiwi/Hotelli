@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-center" href="/">Grand Budapest Hôtel<br><span id="contact-infos">04.24.42.24.42</span></a>
+    <a class="navbar-brand text-center" href="/">@lang('global.hotel_name')<br><span id="contact-infos">@lang('global.hotel_tel')</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,12 +8,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="ml-auto navbar-nav mr-4">
 			@guest
-			<!--	<li class="nav-item">
-					<a id="nav-link-login" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#loginModalCentered">Connexion</a>
-				</li>
-				<li class="nav-item">
-					<a id="nav-link-signin" class="nav-link nav-link-cursor" data-toggle="modal" data-target="#signinModalCentered">Inscription</a>
-				</li>-->
 			<li class="nav-item">
 				<a class="nav-link nav-link-login" href="{{ route('login') }}">@lang('auth.login')</a>
 			</li>
