@@ -24,7 +24,7 @@ class CreateUserTable extends Migration
 			$table->string('phone', 20)->nullable();
 			$table->string('password');
 			$table->integer('id_address')->nullable();
-			$table->integer('id_profil');
+			$table->integer('id_profil')->default(3);
 			$table->integer('id_gender')->default(0);
 			$table->timestamp('rgpd_date')->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->boolean('newsletter')->default(false);
