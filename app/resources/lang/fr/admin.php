@@ -8,12 +8,13 @@ return [
 	'booking'		 => 'Réservations',
 	'clients'		 => 'Clients',
 	'stats'			 => 'Statistiques',
+	'stat'			 => 'Statistiques',
 	'hotels'		 => 'Gestion des hotels',
 	'rooms'			 => 'Gestion des chambres',
 	'staff'			 => 'Gestion des utilisateurs',
 	'statBooking'	 => 'Réservations sur la semaine',
 	'lastBooking'	 => 'Dernières réservations',
-	'stat'			 => 'Statistiques',
+	'no_client'		 => 'Aucun client enregistré',
 	/**
 	 * 	users
 	 */
@@ -29,5 +30,6 @@ return [
 	'last_name'		 => 'nom',
 	'phone'			 => 'Téléphone',
 	'id_profil'		 => 'Profil',
-	'rgpd_date'		 => 'Date RGPD'
+	'rgpd_date'		 => 'Date RGPD',
+	'newsletter'	 => 'Newsletter',
 ];
