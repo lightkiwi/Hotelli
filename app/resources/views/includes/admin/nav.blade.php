@@ -26,7 +26,7 @@
 				</a>
 			</li>
 		</ul>
-
+		@if(Auth::user()->id_profil === 1)
 		<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
 			<span>@lang('global.administration')</span>
 		</h6>
@@ -56,5 +56,6 @@
 				</a>
 			</li>
 		</ul>
+		@endif
 	</div>
 </nav>

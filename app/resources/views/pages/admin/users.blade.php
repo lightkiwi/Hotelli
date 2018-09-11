@@ -28,8 +28,11 @@
 			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#signinModalCentered">
 				<span data-feather="user-plus"></span> @lang('admin.createEntry')
 			</button>
-			<button type="submit" class="btn btn-warning" disabled>
+			<button class="btn btn-warning user-select" disabled>
 				<span data-feather="user-plus"></span> Réinitialiser le mot de passe
+			</button>
+			<button id='user-select-del' class="btn btn-danger user-select" disabled>
+				<span data-feather="user-minus"></span> Supprimer
 			</button>
 		</div>
 	</div>
@@ -46,7 +49,7 @@
 			</thead>
 			<tbody>
 				@foreach ($allUsers as $user)
-				<tr>
+				<tr data-id='{{ $user->id }}'>
 					<td class="inner-table">{{ $user->email }}</td>
 					<td>{{ $user->first_name }}</td>
 					<td class="inner-table">{{ $user->last_name }}</td>
@@ -123,12 +126,6 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" required name="cguCheck"/>
-							<label class="form-check-label" for="cguCheck">
-								@lang('auth.cgu_accept')&nbsp;<a href="/cgu" target="_blank">@lang('auth.cgu_detail')</a> <span class="red">*</span>
-							</label>
-						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="newsCheck" value="t">
 							<label class="form-check-label" for="newsCheck">

@@ -23,8 +23,11 @@
 			</form>
 		</div>
 		<div class="span2 p-2">
-			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#addRoomModalCentered">
+			<button class="btn btn-primary room-select" style='color: white;' data-toggle="modal" data-target="#addRoomModalCentered">
 				<span data-feather="user-plus"></span> @lang('admin.createEntry')
+			</button>
+			<button id='room-select-del' class="btn btn-danger room-select" disabled>
+				<span data-feather="user-minus"></span> Supprimer
 			</button>
 		</div>
 	</div>
@@ -63,7 +66,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="/admin/users/add" aria-label="@lang('auth.register')">
+				<form method="POST" action="/admin/rooms/add" aria-label="@lang('auth.register')">
 					@csrf
 
 					<label for="signinInputEmail">@lang('auth.primary')</label>
