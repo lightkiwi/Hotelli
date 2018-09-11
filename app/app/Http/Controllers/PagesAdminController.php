@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Hash;
 
 /**
  * Description of PagesAdminController
@@ -55,7 +56,7 @@ class PagesAdminController extends Controller
 			'last_name'	 => $request->get('last_name') ? $request->get('last_name') : null,
 			'email'		 => $request->get('email') ? $request->get('email') : null,
 			'phone'		 => $request->get('phone') ? $request->get('phone') : null,
-			'password'	 => $request->get('password') ? $request->get('password') : null,
+			'password'	 => Hash::make($request->get('password')),
 			'id_address' => $request->get('id_address') ? $request->get('id_address') : null,
 			'id_profil'	 => $request->get('id_profil') ? $request->get('id_profil') : 3,
 			'id_gender'	 => $request->get('id_gender') ? $request->get('id_gender') : 1,
@@ -65,7 +66,7 @@ class PagesAdminController extends Controller
 			'user_agent' => $request->get('user_agent') ? $request->get('user_agent') : 'NC',
 		]);
 
-		return redirect('/users');
+		return redirect('/admin/users');
 	}
 
 	public function showHotel()
@@ -75,7 +76,9 @@ class PagesAdminController extends Controller
 
 	public function showRooms()
 	{
-		return view('pages.admin.rooms');
+		$rooms = DB::table('room')->leftjoin('media', 'room.id_media', '=', 'media.id')->get();
+
+		return view('pages.admin.rooms', ['rooms' => $rooms]);
 	}
 
 	public function showBooking()

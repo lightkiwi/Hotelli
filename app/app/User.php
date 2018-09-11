@@ -30,20 +30,4 @@ class User extends Authenticatable
 		'password', 'remember_token',
 	];
 
-//	public function profil()
-//	{
-//		return $this->belongsTo('App\Profil');
-//	}
-//	public function setProfil()
-//	{
-////		$profil = \App\User::all();
-//		$this->profil = User::leftJoin('profil', 'id_profil', '=', 'profil.id');
-////		$room = \App\Room::leftJoin('media', 'room.id_media', '=', 'media.id')
-////            ->find($id);
-//	}
-//	public function setProfil()
-//	{
-////		$profil = \App\User::all();
-//		$this->profil = Profil::getAttribute($this->id_profil);
-//	}
 }
