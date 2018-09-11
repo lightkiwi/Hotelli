@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Hash;
 
@@ -31,7 +32,10 @@ class PagesAdminController extends Controller
 
 	public function index()
 	{
-		return view('pages.admin.home');
+//		$lastResa	 = \App\Reservation::all();
+		$lastResa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->whereDate('start', '>=', Carbon::today())->orderBy('start', 'asc')->limit(5)->get();
+//		dd($lastResa);
+		return view('pages.admin.home', ['lastResa' => $lastResa]);
 	}
 	/**
 	 * ------------------------------------------------------------------------------------------

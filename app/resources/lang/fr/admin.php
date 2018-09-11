@@ -15,6 +15,7 @@ return [
 	'booking'			 => 'Réservations',
 	'statBooking'		 => 'Réservations sur la semaine',
 	'lastBooking'		 => 'Dernières réservations',
+	'nextBooking'		 => 'Prochaines réservations',
 	'no_client'			 => 'Aucun client enregistré',
 	/**
 	 * 	users

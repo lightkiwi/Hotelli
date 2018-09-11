@@ -14,7 +14,7 @@
 				<span data-feather="user-plus"></span> @lang('admin.createEntry')
 			</button>
 			<button type="submit" class="btn btn-warning" disabled>
-				<span data-feather="user-plus"></span> Réinitialiser le mot de passe
+				<span data-feather="unlock"></span> Réinitialiser le mot de passe
 			</button>
 		</div>
 		<div class="span4 p-2 float-right">

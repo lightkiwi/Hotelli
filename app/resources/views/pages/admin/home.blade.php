@@ -8,23 +8,22 @@
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 	<h1 class="h2">@lang('admin.dashboard')</h1>
-	<div class="btn-toolbar mb-2 mb-md-0">
-		<div class="btn-group mr-2">
-			<button class="btn btn-sm btn-outline-secondary">Export</button>
-		</div>
-		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-			<span data-feather="calendar"></span>
-			This week
-		</button>
-	</div>
+	<!--	<div class="btn-toolbar mb-2 mb-md-0">
+			<div class="btn-group mr-2">
+				<button class="btn btn-sm btn-outline-secondary">Export</button>
+			</div>
+			<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+				<span data-feather="calendar"></span>
+				This week
+			</button>
+		</div>-->
 </div>
 
-<h2>@lang('admin.lastBooking')</h2>
+<h4>@lang('admin.nextBooking')</h4>
 <div class="table-responsive">
 	<table class="table table-striped table-sm">
 		<thead>
 			<tr>
-				<th>Date de réservation</th>
 				<th>Client</th>
 				<th>Nb de personnes</th>
 				<th>Chambre</th>
@@ -33,46 +32,15 @@
 			</tr>
 		</thead>
 		<tbody>
+			@foreach ($lastResa as $resa)
 			<tr>
-				<td>1,001</td>
-				<td>Lorem</td>
-				<td>ipsum</td>
-				<td>ipsum</td>
-				<td>dolor</td>
-				<td>sit</td>
+				<td class="inner-table">{{ $resa->last_name }}&nbsp;{{ $resa->first_name }}</td>
+				<td class="inner-table">{{ $resa->persons }}</td>
+				<td class="inner-table">{{ $resa->number }} - {{ $resa->title }}</td>
+				<td class="inner-table">{{ $resa->start }}</td>
+				<td class="inner-table">{{ $resa->phone }}</td>
 			</tr>
-			<tr>
-				<td>1,002</td>
-				<td>amet</td>
-				<td>consectetur</td>
-				<td>adipiscing</td>
-				<td>adipiscing</td>
-				<td>elit</td>
-			</tr>
-			<tr>
-				<td>1,003</td>
-				<td>Integer</td>
-				<td>nec</td>
-				<td>odio</td>
-				<td>Praesent</td>
-				<td>Praesent</td>
-			</tr>
-			<tr>
-				<td>1,003</td>
-				<td>libero</td>
-				<td>libero</td>
-				<td>Sed</td>
-				<td>cursus</td>
-				<td>ante</td>
-			</tr>
-			<tr>
-				<td>1,004</td>
-				<td>dapibus</td>
-				<td>diam</td>
-				<td>diam</td>
-				<td>Sed</td>
-				<td>nisi</td>
-			</tr>
+			@endforeach
 		</tbody>
 	</table>
 </div>
@@ -81,5 +49,35 @@
 	<canvas class="my-4" id="myChart" width="900" height="380"></canvas>
 </div>
 
+<script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["@lang('global.Monday')", "@lang('global.Tuesday')", "@lang('global.Wednesday')", "@lang('global.Thursday')", "@lang('global.Friday')", "@lang('global.Saturday')", "@lang('global.Sunday')"],
+            datasets: [{
+                    label: '@lang('admin.statBooking')',
+                            data: [39, 45, 83, 03, 29, 22, 34],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#007bff'
+                }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+            },
+            legend: {
+                display: true,
+            }
+        }
+    });
+</script>
 @stop
 

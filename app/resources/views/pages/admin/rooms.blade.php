@@ -24,10 +24,10 @@
 		</div>
 		<div class="span2 p-2">
 			<button class="btn btn-primary room-select" style='color: white;' data-toggle="modal" data-target="#addRoomModalCentered">
-				<span data-feather="user-plus"></span> @lang('admin.createEntry')
+				<span data-feather="plus"></span> @lang('admin.createEntry')
 			</button>
 			<button id='room-select-del' class="btn btn-danger room-select" disabled>
-				<span data-feather="user-minus"></span> Supprimer
+				<span data-feather="minus"></span> Supprimer
 			</button>
 		</div>
 	</div>
