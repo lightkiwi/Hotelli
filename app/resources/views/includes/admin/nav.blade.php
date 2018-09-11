@@ -2,7 +2,7 @@
 	<div class="sidebar-sticky">
 		<ul class="nav flex-column">
 			<li class="nav-item">
-				<a class="nav-link active" href="/admin/stat">
+				<a class="nav-link active" href="/admin">
 					<span data-feather="home"></span>
 					@lang('admin.dashboard') <span class="sr-only">(@lang('global.current'))</span>
 				</a>

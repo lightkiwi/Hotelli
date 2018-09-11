@@ -46,7 +46,7 @@ Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
  * Fonction recherche
  */
 Route::get('/search', 'PagesVisiteController@index');
-Route::post('/search', 'PagesVisiteController@search'); //------TODO
+//Route::post('/search', 'PagesVisiteController@search'); //------TODO
 
 /**
  * Détail d'une chambre
