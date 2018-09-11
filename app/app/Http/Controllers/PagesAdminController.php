@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Description of PagesAdminController
@@ -41,7 +42,10 @@ class PagesAdminController extends Controller
 
 	public function showUsers()
 	{
-		$users = \App\User::all();
+//		$users = \App\User::all();
+//		$users	 = \App\User::leftJoin('profil', 'id_profil', '=', 'profil.id');
+		$users = DB::table('user')->leftjoin('profil', 'id_profil', '=', 'profil.id')->get(['email', 'first_name', 'last_name', 'phone', 'rgpd_date', 'label']);
+//		$users = \App\User::with('profil')->where('id', 1)->get();
 
 		return view('pages.admin.users', ['allUsers' => $users]);
 	}

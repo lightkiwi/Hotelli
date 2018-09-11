@@ -33,20 +33,26 @@
 		<ul class="nav flex-column mb-2">
 			<li class="nav-item">
 				<a class="nav-link" href="/admin/hotel">
-					<span data-feather="file-text"></span>
+					<span data-feather="home"></span>
 					@lang('admin.hotels')
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">
-					<span data-feather="file-text"></span>
+					<span data-feather="box"></span>
 					@lang('admin.rooms')
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/admin/users">
-					<span data-feather="file-text"></span>
+					<span data-feather="user-check"></span>
 					@lang('admin.staff')
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/admin/users">
+					<span data-feather="activity"></span>
+					@lang('admin.stat')
 				</a>
 			</li>
 		</ul>

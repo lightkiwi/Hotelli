@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-	protected $profil;
+	protected $profil	 = 'test';
 	protected $table	 = "user";
 	protected $fillable	 = [
 		'first_name',
@@ -19,6 +19,7 @@ class User extends Authenticatable
 		'password',
 		'id_address',
 		'id_profil',
+		'profil',
 		'id_gender',
 		'rgpd_date',
 		'newsletter',
@@ -29,8 +30,20 @@ class User extends Authenticatable
 		'password', 'remember_token',
 	];
 
-	public function setProfil()
-	{
-
-	}
+//	public function profil()
+//	{
+//		return $this->belongsTo('App\Profil');
+//	}
+//	public function setProfil()
+//	{
+////		$profil = \App\User::all();
+//		$this->profil = User::leftJoin('profil', 'id_profil', '=', 'profil.id');
+////		$room = \App\Room::leftJoin('media', 'room.id_media', '=', 'media.id')
+////            ->find($id);
+//	}
+//	public function setProfil()
+//	{
+////		$profil = \App\User::all();
+//		$this->profil = Profil::getAttribute($this->id_profil);
+//	}
 }

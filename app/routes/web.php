@@ -66,10 +66,12 @@ Route::get('/account', 'UserController@account'); //------TODO
 /**
  * Interface d'administration (employés et administrateurs)
  */
+//employés
 Route::get('/admin', 'PagesAdminController@index');
-Route::get('/admin/users', 'PagesAdminController@showUsers'); //------TODO
-Route::get('/admin/hotel', 'PagesAdminController@showHotel'); //------TODO
 Route::get('/admin/booking', 'PagesAdminController@showBooking'); //------TODO
+//administrateurs
+Route::get('/admin/users', 'PagesAdminController@showUsers');
+Route::get('/admin/hotel', 'PagesAdminController@showHotel'); //------TODO
 Route::get('/admin/stat', 'PagesAdminController@showStat'); //------TODO
 
 

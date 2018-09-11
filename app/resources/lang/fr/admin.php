@@ -13,6 +13,7 @@ return [
 	'staff'			 => 'Gestion des utilisateurs',
 	'statBooking'	 => 'Réservations sur la semaine',
 	'lastBooking'	 => 'Dernières réservations',
+	'stat'			 => 'Statistiques',
 	/**
 	 * 	users
 	 */

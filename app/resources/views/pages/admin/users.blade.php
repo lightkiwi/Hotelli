@@ -26,9 +26,11 @@
 				</div>
 			</form>
 		</div>
-		<a href="#" class="btn btn-primary">
-			<span class="glyphicon glyphicon-plus"></span> @lang('admin.createEntry')
-		</a>
+		<div class="span2 p-2">
+			<a href="#" class="btn btn-primary">
+				<span data-feather="user-plus"></span> @lang('admin.createEntry')
+			</a>
+		</div>
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-sm">
@@ -37,7 +39,7 @@
 			<td>@lang('admin.first_name')</td>
 			<td>@lang('admin.last_name')</td>
 			<td>@lang('admin.phone')</td>
-			<td>@lang('passwords.password')</td>
+			<!--<td>@lang('passwords.password')</td>-->
 <!--					<td>id_address</td>-->
 			<td>@lang('admin.id_profil')</td>
 <!--					<td>id_gender</td>-->
@@ -48,19 +50,14 @@
 			</thead>
 			<tbody>
 				@foreach ($allUsers as $user)
+				<?php // $user->setProfil() ?>
 				<tr>
 					<td class="inner-table">{{ $user->email }}</td>
 					<td>{{ $user->first_name }}</td>
 					<td class="inner-table">{{ $user->last_name }}</td>
 					<td class="inner-table">{{ $user->phone }}</td>
-					<td class="inner-table">{{ $user->password }}</td>
-<!--							<td class="inner-table">{{ $user->id_address }}</td>-->
-					<td class="inner-table">{{ $user->profil }}</td>
-<!--							<td class="inner-table">{{ $user->id_gender }}</td>-->
+					<td class="inner-table">{{ $user->label }}</td>
 					<td class="inner-table">{{ $user->rgpd_date }}</td>
-<!--							<td class="inner-table">{{ $user->newsletter }}</td>
-					<td class="inner-table">{{ $user->ip_address }}</td>
-					<td class="inner-table">{{ $user->user_agent }}</td>-->
 				</tr>
 				@endforeach
 			</tbody>
