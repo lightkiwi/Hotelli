@@ -18,6 +18,7 @@ class CreateRoomTable extends Migration
             $table->float('area');
             $table->string('title', 50);
             $table->string('description', 250);
+            $table->string('number', 10);
             $table->float('price');
             $table->float('score');
             $table->integer('persons');

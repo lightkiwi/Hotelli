@@ -10,6 +10,8 @@
   |
  */
 
+use Illuminate\Support\Facades\View;
+
 Route::resource('/user', 'UserController');
 //Route::resource('/room', 'RoomController');
 //Route::resource('/address', 'AddressController');
@@ -46,7 +48,7 @@ Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
  * Fonction recherche
  */
 Route::get('/search', 'PagesVisiteController@index');
-//Route::post('/search', 'PagesVisiteController@search'); //------TODO
+Route::post('/search', 'PagesVisiteController@search'); //------TODO
 
 /**
  * Détail d'une chambre

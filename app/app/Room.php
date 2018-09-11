@@ -12,10 +12,14 @@ class Room extends Model
         'area',
         'title',
         'description',
+        'number',
         'price',
         'score',
+        'persons',
         'id_hotel',
+        'id_state',
         'id_type',
+        'id_media',
     ];
 
     protected $hidden = [

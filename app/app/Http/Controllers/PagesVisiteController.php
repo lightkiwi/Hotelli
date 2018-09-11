@@ -7,6 +7,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -124,13 +125,44 @@ class PagesVisiteController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         // validate
         // read more on validation at http://laravel.com/docs/validation
-        if(Auth::check()){
+        if (Auth::check()) {
+            $reservation = new Reservation();
+
+            $dates = explode('-', $request->input('dates'));
+
+            $start = trim($dates[0]);
+            $end = trim($dates[1]);
+
+            $repost = http_build_query(array(
+                'start' => $start,
+                'end' => $end,
+                'room' => $_POST['room'],
+                'adult' => $_POST['adult'],
+                'child' => $_POST['child'],
+            ));
+
+            $id_room = $request->input('id_room');
+
+            $count_people = (int)$request->input('adult') + (int)$request->input('child');
+            if (!($count_people > 0)) {
+                return Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
+            }
+
+            /*$reservation->start = $request->input('');
+            $reservation->end = $request->input('');
+            $reservation->id_user = Auth::user()->id;
+            $reservation->id_room = $id_room;
+            //$reservation->id_specials = $request->input('');
+            $reservation->count_people = $count_people;
+
+            $reservation->save();*/
+
             return Redirect::to('/');
-        }else{
+        } else {
             return Redirect::to('/login');
         }
     }
