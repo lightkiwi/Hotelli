@@ -34,6 +34,16 @@
                                 $date_range = date('d/m/Y', strtotime($request['start'])) . ' - ' . date('d/m/Y', strtotime($request['end']));
                                 ?>
 
+                                <input type="hidden" name="id_room" value="{{ $room->id }}">
+                                {{--<input type="hidden" name="start" value="{{ $_REQUEST['start'] }}">--}}
+                                {{--<input type="hidden" name="end" value="{{ $_REQUEST['end'] }}">--}}
+                                <input type="hidden" name="room"
+                                       value="{{ isset($_REQUEST['room']) ? $_REQUEST['room']: 0 }}">
+                                <input type="hidden" name="adult"
+                                       value="{{ isset($_REQUEST['adult']) ? $_REQUEST['adult']: 0 }}">
+                                <input type="hidden" name="child"
+                                       value="{{ isset($_REQUEST['child']) ? $_REQUEST['child']: 0 }}">
+
                                 <input type="text" name="dates" value="{{ $date_range }}">
                             </div>
                         </div>
