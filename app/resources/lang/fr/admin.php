@@ -12,6 +12,7 @@ return [
 	'hotels'			 => 'Gestion des hotels',
 	'rooms'				 => 'Gestion des chambres',
 	'staff'				 => 'Gestion des utilisateurs',
+	'booking'			 => 'Réservations',
 	'statBooking'		 => 'Réservations sur la semaine',
 	'lastBooking'		 => 'Dernières réservations',
 	'no_client'			 => 'Aucun client enregistré',
@@ -41,4 +42,14 @@ return [
 	'room_score'		 => 'Score',
 	'room_persons'		 => 'Nb de personne max',
 	'create_room'		 => 'Créer une chambre',
+	/**
+	 * Réservations
+	 */
+	'resa_start'		 => 'Arrivée',
+	'resa_end'			 => 'Départ',
+	'resa_persons'		 => 'Nb de personnes',
+	'resa_name'			 => 'Client',
+	'resa_phone'		 => 'Téléphone',
+	'resa_number'		 => 'Chambre N°',
+	'resa_title'		 => 'Nom de la chambre',
 ];

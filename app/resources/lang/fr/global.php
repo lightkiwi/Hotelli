@@ -11,6 +11,7 @@ return [
 	'welcome'			 => 'Accueil',
 	'administration'	 => 'administration',
 	'account'			 => 'gestion du compte',
+	'my_resa'			 => 'mes réservations',
 	'contact'			 => 'contact',
 	'faq'				 => 'FAQ',
 	'backToApp'			 => 'Retour au site',

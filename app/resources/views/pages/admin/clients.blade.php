@@ -10,7 +10,7 @@
 <div class="flex-center position-ref full-height">
 	<div class="row toolbar">
 		<div class="span2 p-2">
-			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#signinModalCentered">
+			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#addClientModalCentered">
 				<span data-feather="user-plus"></span> @lang('admin.createEntry')
 			</button>
 			<button type="submit" class="btn btn-warning" disabled>
@@ -41,7 +41,7 @@
 				@foreach ($allUsers as $user)
 				<tr>
 					<td class="inner-table">{{ $user->email }}</td>
-					<td>{{ $user->first_name }}</td>
+					<td class="inner-table">{{ $user->first_name }}</td>
 					<td class="inner-table">{{ $user->last_name }}</td>
 					<td class="inner-table">{{ $user->phone }}</td>
 					<td class="inner-table">{{ $user->rgpd_date }}</td>
@@ -69,7 +69,7 @@
 </div>
 
 <!-- modal d'inscription -->
-<div class="modal fade" id="signinModalCentered" tabindex="-1" role="dialog" aria-labelledby="signinModalCentered" aria-hidden="true">
+<div class="modal fade" id="addClientModalCentered" tabindex="-1" role="dialog" aria-labelledby="addClientModalCentered" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

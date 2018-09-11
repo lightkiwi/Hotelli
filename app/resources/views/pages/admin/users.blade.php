@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-<h1>@lang('admin.listUsers')</h1>
+<h1>@lang('admin.staff')</h1>
 
 <div class="flex-center position-ref full-height">
 	<div class="row toolbar">

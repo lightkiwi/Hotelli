@@ -33,14 +33,45 @@ class PagesAdminController extends Controller
 	{
 		return view('pages.admin.home');
 	}
+	/**
+	 * ------------------------------------------------------------------------------------------
+	 * Pages Employés
+	 * ------------------------------------------------------------------------------------------
+	 */
 
-	public function listUsers()
+	/**
+	 * ------------------------------------------------------------------------------------------
+	 * @return type
+	 */
+	public function showBooking()
 	{
-		$users = \App\User::all();
-
-		return view('pages.user.users', ['allUsers' => $users]);
+		$resa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->get();
+//		dd($resa);
+		return view('pages.admin.booking', ['allResas' => $resa]);
 	}
 
+	public function showBilling()
+	{
+		return view('pages.admin.billing');
+	}
+
+	public function showClients()
+	{
+		$users = DB::table('user')->where('id_profil', 3)->get(['email', 'first_name', 'last_name', 'phone', 'rgpd_date', 'newsletter']);
+
+		return view('pages.admin.clients', ['allUsers' => $users]);
+	}
+	/**
+	 * ------------------------------------------------------------------------------------------
+	 * Pages Administrateurs
+	 * ------------------------------------------------------------------------------------------
+	 */
+
+	/**
+	 * ------------------------------------------------------------------------------------------
+	 * Gestion des utilisateurs
+	 * @return type
+	 */
 	public function showUsers()
 	{
 		$users	 = DB::table('user')->leftjoin('profil', 'id_profil', '=', 'profil.id')->get(['user.id', 'email', 'first_name', 'last_name', 'phone', 'rgpd_date', 'label', 'newsletter']);
@@ -98,7 +129,7 @@ class PagesAdminController extends Controller
 
 	public function addRoom(Request $request)
 	{
-		\App\User::create([
+		\App\Room::create([
 			'first_name' => $request->get('first_name') ? $request->get('first_name') : null,
 			'last_name'	 => $request->get('last_name') ? $request->get('last_name') : null,
 			'email'		 => $request->get('email') ? $request->get('email') : null,
@@ -113,7 +144,7 @@ class PagesAdminController extends Controller
 			'user_agent' => $request->get('user_agent') ? $request->get('user_agent') : 'NC',
 		]);
 
-		return redirect('/admin/users');
+		return redirect('/admin/rooms');
 	}
 
 	public function deleteRoom($id)
@@ -124,23 +155,6 @@ class PagesAdminController extends Controller
 			$room->delete();
 		}
 		return redirect('/admin/rooms');
-	}
-
-	public function showBooking()
-	{
-		return view('pages.admin.booking');
-	}
-
-	public function showBilling()
-	{
-		return view('pages.admin.billing');
-	}
-
-	public function showClients()
-	{
-		$users = DB::table('user')->where('id_profil', 3)->get(['email', 'first_name', 'last_name', 'phone', 'rgpd_date', 'newsletter']);
-
-		return view('pages.admin.clients', ['allUsers' => $users]);
 	}
 
 	public function showStats()
