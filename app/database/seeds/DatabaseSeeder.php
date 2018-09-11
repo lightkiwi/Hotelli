@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
                 'area' => $rand,
                 'title' => 'Suite ' . $title[$i],
                 'description' => 'La suite ' . $title[$i] . ' ' . $description[$i],
-                'number' => str_shuffle('ABCDEF'),
+                'number' => rand(1, 10) . str_shuffle('ABC'),
                 'price' => round(($rand * 0.80)),
                 'score' => (rand(30, 50) / 10),
                 'persons' => rand(1, 10),

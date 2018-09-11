@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -146,22 +147,40 @@ class PagesVisiteController extends Controller
             ));
 
             $id_room = $request->input('id_room');
+            if (empty($id_room)) return Redirect::to('/');
 
-            $count_people = (int)$request->input('adult') + (int)$request->input('child');
-            if (!($count_people > 0)) {
-                return Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
-            }
+            $redirect = Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
 
-            /*$reservation->start = $request->input('');
-            $reservation->end = $request->input('');
+            $persons = (int)$request->input('adult') + (int)$request->input('child');
+            if (!($persons > 0)) return $redirect;
+
+            $format = 'd/m/Y';
+
+            $carbon_start = Carbon::createFromFormat($format, $start);
+            $carbon_end = Carbon::createFromFormat($format, $end);
+
+            $reservation->start = $carbon_start;
+            $reservation->end = $carbon_end;
             $reservation->id_user = Auth::user()->id;
             $reservation->id_room = $id_room;
             //$reservation->id_specials = $request->input('');
-            $reservation->count_people = $count_people;
+            $reservation->persons = $persons;
 
-            $reservation->save();*/
+            $reservation->save();
 
-            return Redirect::to('/');
+
+            $room = \App\Room::find($id_room);
+
+            $recap = array(
+                'title' => $room->title,
+                'number' => $room->number,
+                'dates' => $request->input('dates'),
+                'persons' => $persons,
+                'price' => $room->price,
+                'total' => ($room->price * $carbon_start->diff($carbon_end)->days),
+            );
+
+            return view('pages.room.recap', compact('recap'));
         } else {
             return Redirect::to('/login');
         }

@@ -14,7 +14,7 @@ class Reservation extends Model
         'id_user',
         'id_room',
         'id_specials',
-        'count_people',
+        'persons',
     ];
 
     protected $hidden = [
