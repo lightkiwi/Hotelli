@@ -13,7 +13,7 @@ return [
 	'rooms'				 => 'Gestion des chambres',
 	'staff'				 => 'Gestion des utilisateurs',
 	'booking'			 => 'Réservations',
-	'statBooking'		 => 'Réservations sur la semaine',
+	'statBooking'		 => 'Nb de chambres occupées',
 	'lastBooking'		 => 'Dernières réservations',
 	'nextBooking'		 => 'Prochaines réservations',
 	'no_client'			 => 'Aucun client enregistré',

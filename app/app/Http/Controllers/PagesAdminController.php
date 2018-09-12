@@ -32,10 +32,28 @@ class PagesAdminController extends Controller
 
 	public function index()
 	{
-//		$lastResa	 = \App\Reservation::all();
 		$lastResa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->whereDate('start', '>=', Carbon::today())->orderBy('start', 'asc')->limit(5)->get();
-//		dd($lastResa);
-		return view('pages.admin.home', ['lastResa' => $lastResa]);
+
+//		$statBook	 = '[3, 4, 3, 0, 2, 2, 3]';
+//		$statBook	 = DB::table('reservation')->whereDate(['start', '<=', Carbon::today()], ['end', '<', Carbon::today()])->count();
+		$dateNow	 = Carbon::today();
+		$statBook1	 = DB::table('reservation')->whereDate('start', '<=', $dateNow)->whereDate('end', '>', $dateNow)->count();
+		$statBook2	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow->addDay(1))->count();
+		$statBook3	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow->addDay(1))->count();
+		$statBook4	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow->addDay(1))->count();
+		$statBook5	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow->addDay(1))->count();
+		$statBook6	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow->addDay(1))->count();
+		$statBook7	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow->addDay(1))->count();
+		$statBook	 = "[$statBook1,$statBook2,$statBook3,$statBook4,$statBook5,$statBook6,$statBook7]";
+
+		$statBookMax = DB::table('room')->count();
+
+		$dateNow = Carbon::today();
+		$days	 = "[$dateNow->day,".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day."]";
+
+//		$jours = $dateNow->day;
+//		dd($days);
+		return view('pages.admin.home', ['lastResa' => $lastResa, 'statBook' => $statBook, 'statBookMax' => $statBookMax, 'days' => $days]);
 	}
 	/**
 	 * ------------------------------------------------------------------------------------------

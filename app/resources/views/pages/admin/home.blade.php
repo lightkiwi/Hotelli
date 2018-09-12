@@ -24,11 +24,11 @@
 	<table class="table table-striped table-sm">
 		<thead>
 			<tr>
-				<th>Client</th>
-				<th>Nb de personnes</th>
-				<th>Chambre</th>
-				<th>Date d'arrivée</th>
-				<th>Durée</th>
+				<th>@lang('admin.resa_name')</th>
+				<th>@lang('admin.resa_persons')</th>
+				<th>@lang('admin.resa_number')</th>
+				<th>@lang('admin.resa_start')</th>
+				<th>@lang('admin.phone')</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -45,38 +45,44 @@
 	</table>
 </div>
 
-<div class="col-md-12 center">
+<div class="col-md-8 center">
 	<canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+</div>
+<div class="col-md-4 center">
+
 </div>
 
 <script>
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["@lang('global.Monday')", "@lang('global.Tuesday')", "@lang('global.Wednesday')", "@lang('global.Thursday')", "@lang('global.Friday')", "@lang('global.Saturday')", "@lang('global.Sunday')"],
-            datasets: [{
+    type: 'bar',
+            data: {
+            labels: {{ $days }},
+                    datasets: [{
                     label: '@lang('admin.statBooking')',
-                            data: [39, 45, 83, 03, 29, 22, 34],
-                    lineTension: 0,
-                    backgroundColor: 'transparent',
-                    borderColor: '#007bff',
-                    borderWidth: 4,
-                    pointBackgroundColor: '#007bff'
-                }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                        ticks: {
-                            beginAtZero: false
-                        }
+                            data: {{ $statBook }},
+                            lineTension: 0,
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            borderWidth: 1,
+                            pointBackgroundColor: '#007bff'
                     }]
             },
-            legend: {
-                display: true,
+            options: {
+            scales: {
+            yAxes: [{
+            ticks: {
+            beginAtZero: true,
+                    steps: {{ $statBookMax }},
+                    stepValue: 1,
+                    max: {{ $statBookMax }}
             }
-        }
+            }]
+            },
+                    legend: {
+                    display: true,
+                    }
+            }
     });
 </script>
 @stop
