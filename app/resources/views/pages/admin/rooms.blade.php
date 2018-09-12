@@ -71,52 +71,28 @@
 
 					<label for="signinInputEmail">@lang('auth.primary')</label>
 					<div class="form-row">
-						<div class="form-group col-md-4">
-							<input type="text" class="form-control" name="first_name" placeholder="Prénom">
-						</div>
-						<div class="form-group col-md-4">
-							<input type="text" class="form-control" name="last_name" placeholder="Nom" required>
-						</div>
-						<div class="form-group col-md-4">
-							<input type="password" class="form-control" name="password" required="true" placeholder="Password">
-						</div>
-					</div>
-					<div class="form-row">
 						<div class="form-group col-md-8">
-							<input type="email" class="form-control" name="email" required placeholder="Email">
+							<input type="text" class="form-control" name="title" placeholder="Nom de la chambre" required>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="password" class="form-control" name="password" required="true" placeholder="Password">
+							<input type="text" class="form-control" name="number" required="true" placeholder="Numéro">
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="signinInputAddress">@lang('auth.complementary')</label>
-						<input type="text" class="form-control" name="adress" placeholder="1 avenue...">
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-4">
-							<input type="zip" class="form-control" name="cp" placeholder="Code Postal">
+							<span style="display: inline-block;white-space: nowrap;">
+								<input type="text" class="form-control" style="display: inline-block;" name="price" required placeholder="Prix">&nbsp;€
+							</span>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="text" class="form-control" name="ville" placeholder="Ville">
+							<input type="number" class="form-control" name="persons" required="true" placeholder="Nb de personnes">
 						</div>
-						<div class="form-group col-md-4">
-							<input type="tel" class="form-control" name="tel" placeholder="Téléphone">
+						<div class="form-group col-md-2">
+							<input type="number" class="form-control" name="area" placeholder="Aire">
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" required name="cguCheck"/>
-							<label class="form-check-label" for="cguCheck">
-								@lang('auth.cgu_accept')&nbsp;<a href="/cgu" target="_blank">@lang('auth.cgu_detail')</a> <span class="red">*</span>
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="newsCheck" value="t">
-							<label class="form-check-label" for="newsCheck">
-								@lang('auth.newsletter')
-							</label>
-						</div>
+						<textarea class="form-control" name="description" placeholder="Description"></textarea>
 					</div>
 					<div class="text-right">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('global.cancel')</button>

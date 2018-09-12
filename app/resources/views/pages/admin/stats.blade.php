@@ -41,7 +41,7 @@
                     label: '@lang('admin.statBooking')',
                             data: [39, 45, 83, 03, 29, 22, 34],
                             lineTension: 0,
-                            backgroundColor: 'transparent',
+                            backgroundColor: '#007bff',
                             borderColor: '#007bff',
                             borderWidth: 4,
                             pointBackgroundColor: '#007bff'
@@ -61,7 +61,7 @@
             }
     });
     var myChart1 = new Chart(ctx1, {
-    type: 'bar',
+    type: 'line',
             data: {
             labels: ["@lang('global.Monday')", "@lang('global.Tuesday')", "@lang('global.Wednesday')", "@lang('global.Thursday')", "@lang('global.Friday')", "@lang('global.Saturday')", "@lang('global.Sunday')"],
                     datasets: [{

@@ -32,10 +32,28 @@ class PagesAdminController extends Controller
 
 	public function index()
 	{
-//		$lastResa	 = \App\Reservation::all();
 		$lastResa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->whereDate('start', '>=', Carbon::today())->orderBy('start', 'asc')->limit(5)->get();
-//		dd($lastResa);
-		return view('pages.admin.home', ['lastResa' => $lastResa]);
+
+//		$statBook	 = '[3, 4, 3, 0, 2, 2, 3]';
+//		$statBook	 = DB::table('reservation')->whereDate(['start', '<=', Carbon::today()], ['end', '<', Carbon::today()])->count();
+		$dateNow	 = Carbon::today();
+		$statBook1	 = DB::table('reservation')->whereDate('start', '<=', $dateNow)->whereDate('end', '>', $dateNow)->count();
+		$statBook2	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow)->count();
+		$statBook3	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow)->count();
+		$statBook4	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow)->count();
+		$statBook5	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow)->count();
+		$statBook6	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow)->count();
+		$statBook7	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow)->count();
+		$statBook	 = "[$statBook1,$statBook2,$statBook3,$statBook4,$statBook5,$statBook6,$statBook7]";
+
+		$statBookMax = DB::table('room')->count();
+
+		$dateNow = Carbon::today();
+		$days	 = "[$dateNow->day,".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day."]";
+
+//		$jours = $dateNow->day;
+//		dd($statBook, $statBookMax);
+		return view('pages.admin.home', ['lastResa' => $lastResa, 'statBook' => $statBook, 'statBookMax' => $statBookMax, 'days' => $days]);
 	}
 	/**
 	 * ------------------------------------------------------------------------------------------
@@ -134,18 +152,17 @@ class PagesAdminController extends Controller
 	public function addRoom(Request $request)
 	{
 		\App\Room::create([
-			'first_name' => $request->get('first_name') ? $request->get('first_name') : null,
-			'last_name'	 => $request->get('last_name') ? $request->get('last_name') : null,
-			'email'		 => $request->get('email') ? $request->get('email') : null,
-			'phone'		 => $request->get('phone') ? $request->get('phone') : null,
-			'password'	 => Hash::make($request->get('password')),
-			'id_address' => $request->get('id_address') ? $request->get('id_address') : null,
-			'id_profil'	 => $request->get('id_profil') ? $request->get('id_profil') : 3,
-			'id_gender'	 => $request->get('id_gender') ? $request->get('id_gender') : 1,
-			'rgpd_date'	 => $request->get('rgpd_date') ? $request->get('rgpd_date') : now(),
-			'newsletter' => $request->get('newsletter') ? $request->get('newsletter') : 0,
-			'ip_address' => $request->get('ip_address') ? $request->get('ip_address') : '0.0.0.0',
-			'user_agent' => $request->get('user_agent') ? $request->get('user_agent') : 'NC',
+			'area'			 => $request->get('area') ? $request->get('area') : null,
+			'title'			 => $request->get('title') ? $request->get('title') : null,
+			'description'	 => $request->get('description') ? $request->get('description') : null,
+			'number'		 => $request->get('number') ? $request->get('number') : null,
+			'price'			 => $request->get('price'),
+//			'score' => $request->get('id_address') ? $request->get('id_address') : null,
+			'persons'		 => $request->get('persons'),
+			'id_hotel'		 => $request->get('id_hotel') ? $request->get('id_hotel') : 1,
+			'id_state'		 => $request->get('rgpd_date') ? $request->get('rgpd_date') : now(),
+			'id_type'		 => $request->get('newsletter') ? $request->get('newsletter') : 0,
+			'id_media'		 => $request->get('ip_address') ? $request->get('ip_address') : '0.0.0.0',
 		]);
 
 		return redirect('/admin/rooms');
