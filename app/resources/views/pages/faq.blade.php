@@ -13,7 +13,7 @@
                     <p><a name="_GoBack"></a>
                         <font color="#47453a"><font><font><b>Vous
                                         trouverez ci-dessous une liste des questions les plus fréquemment
-                                        posées par nos clients.</b></font></font></font></p>
+                                       posées par nos clients.</b></font></font></font></p>
 
 
                     <p>
