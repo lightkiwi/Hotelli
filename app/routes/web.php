@@ -56,7 +56,7 @@ Route::post('/search', 'PagesVisiteController@search'); //------TODO
 Route::get('/room', 'PagesVisiteController@index');
 Route::get('/room/{roomId}', 'PagesVisiteController@detail');
 Route::post('/room', 'PagesVisiteController@store'); //------TODO
-//Route::get('/room/{roomId}', 'RoomController@show');
+Route::post('/room/comment', 'RoomController@comment');
 
 
 /**

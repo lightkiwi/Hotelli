@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
@@ -98,6 +100,22 @@ class RoomController extends Controller
             'media.path',
         ]);
 
+        foreach ($rooms as &$room){
+            $comments = Comment::leftJoin('user', 'comment.id_user', '=', 'user.id')
+                ->where('id_room', '=', $room->id)->get();
+
+            $score = $count_score = 0;
+            foreach ($comments as $comment) {
+                $score += $comment->score;
+                $count_score++;
+            }
+            if ($count_score > 0) {
+                $room->score = round(($score / $count_score), 1);
+            } else {
+                $room->score = '-';
+            }
+        }
+
         return view('pages.home', compact('rooms'));
     }
 
@@ -130,9 +148,24 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $room = \App\Room::leftJoin('media', 'room.id_media', '=', 'media.id')
+        $room = Room::leftJoin('media', 'room.id_media', '=', 'media.id')
             ->find($id);
         return view('pages.room.room', compact('room'));
+    }
+
+    public function comment(Request $request)
+    {
+        $comment = new Comment();
+        $comment->id_room = $request->input('id');
+        $comment->id_user = Auth::user()->id;
+        $comment->text = $request->input('comment');
+        $comment->id_parent = null;
+        $comment->score = $request->input('note');
+
+        $comment->save();
+
+        $room = new PagesVisiteController();
+        return $room->detail($request->input('id'), $request);
     }
 
     /**

@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@hotelli.fr',
             'phone' => '0424422442',
             'password' => Hash::make('hotelli'),
-            'id_address'=>'1',
+            'id_address' => '1',
             'id_profil' => 1,
             'id_gender' => 4,
         ]);
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'employe@hotelli.fr',
             'phone' => '0424422442',
             'password' => Hash::make('hotelli'),
-            'id_address'=>'1',
+            'id_address' => '1',
             'id_profil' => 2,
             'id_gender' => 4,
         ]);
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@hotelli.fr',
             'phone' => '0424422442',
             'password' => Hash::make('hotelli'),
-            'id_address'=>'1',
+            'id_address' => '1',
             'id_profil' => 3,
             'id_gender' => 4,
         ]);
@@ -171,5 +171,16 @@ class DatabaseSeeder extends Seeder
             'id_user' => '1',
             'id_room' => '1',
         ]);
+
+        //initialisation de la table des commentaires
+        /*for ($i = 0; $i < 10; $i++) {
+            DB::table('comment')->insert([
+                'id_room' => rand(1, 5),
+                'id_user' => 1,
+                'text' => str_shuffle('azertyuiopqsdfghjklmwxcvbn'),
+                'id_parent' => null,
+                'score' => 5.4,
+            ]);
+        }*/
     }
 }

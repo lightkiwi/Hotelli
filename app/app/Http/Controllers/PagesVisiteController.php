@@ -7,6 +7,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -117,7 +118,21 @@ class PagesVisiteController extends Controller
             $dates[] = array(date('d/m/Y', strtotime($date->start)), date('d/m/Y', strtotime($date->end)));
         }
 
-        return view('pages.room.room', compact('room', 'request', 'dates'));
+        $comments = Comment::leftJoin('user', 'comment.id_user', '=', 'user.id')
+            ->where('id_room', '=', $id)->get();
+
+        $score = $count_score = 0;
+        foreach ($comments as $comment) {
+            $score += $comment->score;
+            $count_score++;
+        }
+        if ($count_score > 0) {
+            $room->score = round(($score / $count_score), 1);
+        } else {
+            $room->score = '-';
+        }
+
+        return view('pages.room.room', compact('room', 'request', 'dates', 'comments'));
     }
 
 
