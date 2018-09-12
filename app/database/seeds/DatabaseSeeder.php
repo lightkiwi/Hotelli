@@ -77,37 +77,37 @@ class DatabaseSeeder extends Seeder
 			'country'		 => 'Hongrie',
 		]);
 
-		//initialisation utilisateurs
-		DB::table('user')->insert([
-			'first_name' => 'admin',
-			'last_name'	 => 'hotelli',
-			'email'		 => 'admin@hotelli.fr',
-			'phone'		 => '0424422442',
-			'password'	 => Hash::make('hotelli'),
-			'id_address' => '1',
-			'id_profil'	 => 1,
-			'id_gender'	 => 4,
-		]);
-		DB::table('user')->insert([
-			'first_name' => 'employe',
-			'last_name'	 => 'hotelli',
-			'email'		 => 'employe@hotelli.fr',
-			'phone'		 => '0424422442',
-			'password'	 => Hash::make('hotelli'),
-			'id_address' => '1',
-			'id_profil'	 => 2,
-			'id_gender'	 => 4,
-		]);
-		DB::table('user')->insert([
-			'first_name' => 'user',
-			'last_name'	 => 'hotelli',
-			'email'		 => 'user@hotelli.fr',
-			'phone'		 => '0424422442',
-			'password'	 => Hash::make('hotelli'),
-			'id_address' => '1',
-			'id_profil'	 => 3,
-			'id_gender'	 => 4,
-		]);
+        //initialisation utilisateurs
+        DB::table('user')->insert([
+            'first_name' => 'admin',
+            'last_name' => 'hotelli',
+            'email' => 'admin@hotelli.fr',
+            'phone' => '0424422442',
+            'password' => Hash::make('hotelli'),
+            'id_address' => '1',
+            'id_profil' => 1,
+            'id_gender' => 4,
+        ]);
+        DB::table('user')->insert([
+            'first_name' => 'employe',
+            'last_name' => 'hotelli',
+            'email' => 'employe@hotelli.fr',
+            'phone' => '0424422442',
+            'password' => Hash::make('hotelli'),
+            'id_address' => '1',
+            'id_profil' => 2,
+            'id_gender' => 4,
+        ]);
+        DB::table('user')->insert([
+            'first_name' => 'user',
+            'last_name' => 'hotelli',
+            'email' => 'user@hotelli.fr',
+            'phone' => '0424422442',
+            'password' => Hash::make('hotelli'),
+            'id_address' => '1',
+            'id_profil' => 3,
+            'id_gender' => 4,
+        ]);
 
 		//initialisation des médias
 		DB::table('media')->insert([
@@ -166,13 +166,24 @@ class DatabaseSeeder extends Seeder
 			]);
 		}
 
-		//initialisation de la table des réservations
-		DB::table('reservation')->insert([
-			'start'		 => date('Y-m-d'),
-			'end'		 => date('Y-m-d', time() + (60 * 60 * 24)),
-			'persons'	 => '2',
-			'id_user'	 => '1',
-			'id_room'	 => '1',
-		]);
-	}
+        //initialisation de la table des réservations
+        DB::table('reservation')->insert([
+            'start' => date('Y-m-d'),
+            'end' => date('Y-m-d', time() + (60 * 60 * 24)),
+            'persons' => '2',
+            'id_user' => '1',
+            'id_room' => '1',
+        ]);
+
+        //initialisation de la table des commentaires
+        /*for ($i = 0; $i < 10; $i++) {
+            DB::table('comment')->insert([
+                'id_room' => rand(1, 5),
+                'id_user' => 1,
+                'text' => str_shuffle('azertyuiopqsdfghjklmwxcvbn'),
+                'id_parent' => null,
+                'score' => 5.4,
+            ]);
+        }*/
+    }
 }
