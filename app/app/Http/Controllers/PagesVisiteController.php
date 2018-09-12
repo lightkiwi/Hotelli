@@ -197,7 +197,38 @@ class PagesVisiteController extends Controller
 
             return view('pages.room.recap', compact('recap'));
         } else {
-            return Redirect::to('/login');
+            $dates = explode('-', $request->input('dates'));
+
+            $start = trim($dates[0]);
+            $end = trim($dates[1]);
+
+            $repost = http_build_query(array(
+                'start' => $start,
+                'end' => $end,
+                'room' => $_POST['room'],
+                'adult' => $_POST['adult'],
+                'child' => $_POST['child'],
+            ));
+
+            $id_room = $request->input('id_room');
+            if (empty($id_room)) return Redirect::to('/');
+
+            $redirect = Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
+
+            $persons = (int)$request->input('adult') + (int)$request->input('child');
+            if (!($persons > 0)) return $redirect;
+
+            $format = 'd/m/Y';
+
+            $carbon_start = Carbon::createFromFormat($format, $start);
+            $carbon_end = Carbon::createFromFormat($format, $end);
+
+            $request->start = $carbon_start;
+            $request->end = $carbon_end;
+            $request->id_room = $id_room;
+            $request->persons = $persons;
+
+            return view('pages.room.now', compact('request'));
         }
     }
 
@@ -205,5 +236,11 @@ class PagesVisiteController extends Controller
     {
         $roomController = new RoomController();
         return $roomController->index($request);
+    }
+
+    public function booking(Request $request)
+    {
+        //--TODO faire la requete pour enregistrer la reservation sans login
+        dd($request);
     }
 }

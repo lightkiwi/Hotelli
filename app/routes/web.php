@@ -58,6 +58,10 @@ Route::get('/room/{roomId}', 'PagesVisiteController@detail');
 Route::post('/room', 'PagesVisiteController@store'); //------TODO
 Route::post('/room/comment', 'RoomController@comment');
 
+/**
+ * Réservation sans inscription
+ */
+Route::post('/booking/now', 'PagesVisiteController@booking');
 
 /**
  * Interface de gestion de compte (utilisateur standard)
