@@ -9,21 +9,21 @@
 
 <div class="flex-center position-ref full-height">
 	<div class="row toolbar">
-		<div class="span2 p-2">
-			<div class="btn-group pull-right" data-toggle="buttons-radio">
-				<button class="btn active">@lang('admin.tableAll')</button>
-				<button class="btn">@lang('admin.tableStaff')</button>
-				<button class="btn">@lang('admin.tableClient')</button>
-			</div>
-		</div>
-		<div class="span4 p-2">
-			<form class="form-search">
-				<div class="input-append">
-					<input type="text" class="span2" disabled>
-					<button type="submit" class="btn" disabled>@lang('search.search')</button>
-				</div>
-			</form>
-		</div>
+		<!--		<div class="span2 p-2">
+					<div class="btn-group pull-right" data-toggle="buttons-radio">
+						<button class="btn active">@lang('admin.tableAll')</button>
+						<button class="btn">@lang('admin.tableStaff')</button>
+						<button class="btn">@lang('admin.tableClient')</button>
+					</div>
+				</div>-->
+		<!--		<div class="span4 p-2">
+					<form class="form-search">
+						<div class="input-append">
+							<input type="text" class="span2" disabled>
+							<button type="submit" class="btn" disabled>@lang('search.search')</button>
+						</div>
+					</form>
+				</div>-->
 		<div class="span2 p-2">
 			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#signinModalCentered">
 				<span data-feather="user-plus"></span> @lang('admin.createEntry')

@@ -48,8 +48,8 @@ class PagesAdminController extends Controller
 
 		$statBookMax = DB::table('room')->count();
 
-		$dateNow = Carbon::today();
-		$days	 = "[$dateNow->day,".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day."]";
+		$dateNow->today();
+		$days = "[$dateNow->day,".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day.",".$dateNow->addDay(1)->day."]";
 
 //		$jours = $dateNow->day;
 //		dd($statBook, $statBookMax);
@@ -157,12 +157,12 @@ class PagesAdminController extends Controller
 			'description'	 => $request->get('description') ? $request->get('description') : null,
 			'number'		 => $request->get('number') ? $request->get('number') : null,
 			'price'			 => $request->get('price'),
-//			'score' => $request->get('id_address') ? $request->get('id_address') : null,
+			'score'			 => $request->get('score') ? $request->get('score') : null,
 			'persons'		 => $request->get('persons'),
 			'id_hotel'		 => $request->get('id_hotel') ? $request->get('id_hotel') : 1,
-			'id_state'		 => $request->get('rgpd_date') ? $request->get('rgpd_date') : now(),
-			'id_type'		 => $request->get('newsletter') ? $request->get('newsletter') : 0,
-			'id_media'		 => $request->get('ip_address') ? $request->get('ip_address') : '0.0.0.0',
+			'id_state'		 => $request->get('id_state') ? $request->get('id_state') : 1,
+			'id_type'		 => $request->get('id_type') ? $request->get('id_type') : 1,
+			'id_media'		 => $request->get('id_media') ? $request->get('id_media') : 1,
 		]);
 
 		return redirect('/admin/rooms');

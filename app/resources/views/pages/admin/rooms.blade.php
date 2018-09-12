@@ -14,14 +14,14 @@
 				<option>@lang('global.hotel_name')</option>
 			</select>
 		</div>
-		<div class="span4 p-2">
-			<form class="form-search">
-				<div class="input-append">
-					<input type="text" class="span2" disabled>
-					<button type="submit" class="btn" disabled>@lang('search.search')</button>
-				</div>
-			</form>
-		</div>
+		<!--		<div class="span4 p-2">
+					<form class="form-search">
+						<div class="input-append">
+							<input type="text" class="span2" disabled>
+							<button type="submit" class="btn" disabled>@lang('search.search')</button>
+						</div>
+					</form>
+				</div>-->
 		<div class="span2 p-2">
 			<button class="btn btn-primary room-select" style='color: white;' data-toggle="modal" data-target="#addRoomModalCentered">
 				<span data-feather="plus"></span> @lang('admin.createEntry')
@@ -43,7 +43,7 @@
 			<tbody>
 				@foreach ($rooms as $room)
 				<tr>
-					<td class="inner-table">101</td>
+					<td class="inner-table">{{ $room->number }}</td>
 					<td class="inner-table">{{ $room->title }}</td>
 					<td class="inner-table">{{ $room->description }}</td>
 					<td class="inner-table">{{ $room->score }}</td>

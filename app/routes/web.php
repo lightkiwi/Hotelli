@@ -30,42 +30,33 @@ Auth::routes();
  */
 Route::post('/', 'PagesVisiteController@index');
 Route::get('/', 'PagesVisiteController@index');
-Route::get('/faq', 'PagesVisiteController@faq'); //------TODO
-Route::get('/cgu', 'PagesVisiteController@cgu'); //------TODO
-Route::get('/cookies', 'PagesVisiteController@cookies'); //------TODO
-Route::get('/contact', 'PagesVisiteController@contact'); //------TODO
-
-/**
- * Fonction login et inscription
- */
-//Route::get('/login', 'PagesVisiteController@index')->name('home');
-//Route::get('/singin', 'PagesVisiteController@index');
-//Route::post('/login', 'PagesVisiteController@login');
-//Route::post('/singin', 'PagesVisiteController@singin'); //------TODO
-//Route::post('/disconnect', 'PagesVisiteController@disconnect');
+Route::get('/faq', 'PagesVisiteController@faq');
+Route::get('/cgu', 'PagesVisiteController@cgu');
+Route::get('/cookies', 'PagesVisiteController@cookies');
+Route::get('/contact', 'PagesVisiteController@contact');
 
 /**
  * Fonction recherche
  */
 Route::get('/search', 'PagesVisiteController@index');
-Route::post('/search', 'PagesVisiteController@search'); //------TODO
+Route::post('/search', 'PagesVisiteController@search');
 
 /**
  * Détail d'une chambre
  */
 Route::get('/room', 'PagesVisiteController@index');
 Route::get('/room/{roomId}', 'PagesVisiteController@detail');
-Route::post('/room', 'PagesVisiteController@store'); //------TODO
+Route::post('/room', 'PagesVisiteController@store');
 //Route::get('/room/{roomId}', 'RoomController@show');
 
 
 /**
  * Interface de gestion de compte (utilisateur standard)
  */
-Route::get('/account', 'UserController@account'); //------TODO
-Route::post('/account', 'UserController@update'); //------TODO
-Route::get('/account/booking', 'UserController@booking'); //------TODO
-Route::get('/account/booking/{id}/{id_user}', 'ReservationController@destroy'); //------TODO
+Route::get('/account', 'UserController@account');
+Route::post('/account', 'UserController@update');
+Route::get('/account/booking', 'UserController@booking');
+Route::get('/account/booking/{id}/{id_user}', 'ReservationController@destroy');
 
 
 /**
@@ -73,16 +64,16 @@ Route::get('/account/booking/{id}/{id_user}', 'ReservationController@destroy'); 
  */
 //employés
 Route::get('/admin', 'PagesAdminController@index');
-Route::get('/admin/booking', 'PagesAdminController@showBooking'); //------TODO
+Route::get('/admin/booking', 'PagesAdminController@showBooking');
 Route::get('/admin/billing', 'PagesAdminController@showBilling'); //------TODO
-Route::get('/admin/clients', 'PagesAdminController@showClients'); //------TODO
+Route::get('/admin/clients', 'PagesAdminController@showClients');
 //administrateurs
 Route::get('/admin/users', 'PagesAdminController@showUsers');
 Route::post('/admin/users/add', 'PagesAdminController@addUser');
 Route::get('/admin/users/del/{id}', ['uses' => 'PagesAdminController@deleteUser']);
 Route::get('/admin/hotel', 'PagesAdminController@showHotel'); //------TODO
 Route::get('/admin/rooms', 'PagesAdminController@showRooms');
-Route::get('/admin/rooms/add', 'PagesAdminController@addRoom');
+Route::post('/admin/rooms/add', 'PagesAdminController@addRoom');
 Route::get('/admin/rooms/del/{id}', ['uses' => 'PagesAdminController@deleteRoom']);
 Route::get('/admin/stat', 'PagesAdminController@showStats'); //------TODO
 
