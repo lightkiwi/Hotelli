@@ -72,6 +72,22 @@ class PagesAdminController extends Controller
 		return view('pages.admin.booking', ['allResas' => $resa]);
 	}
 
+	public function addBooking()
+	{
+		$resa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->get();
+//		dd($resa);
+//		return view('pages.admin.booking', ['allResas' => $resa]);
+		return redirect('/admin/booking');
+	}
+
+	public function deleteBooking()
+	{
+		$resa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->get();
+//		dd($resa);
+//		return view('pages.admin.booking', ['allResas' => $resa]);
+		return redirect('/admin/booking');
+	}
+
 	public function showBilling()
 	{
 		return view('pages.admin.billing');

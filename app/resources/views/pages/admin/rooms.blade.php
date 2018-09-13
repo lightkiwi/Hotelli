@@ -79,7 +79,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-6">
 							<span style="display: inline-block;white-space: nowrap;">
 								<input type="text" class="form-control" style="display: inline-block;" name="price" required placeholder="Prix">&nbsp;€
 							</span>
@@ -89,6 +89,11 @@
 						</div>
 						<div class="form-group col-md-2">
 							<input type="number" class="form-control" name="area" placeholder="Aire">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<input type="url" class="form-control" name="media" placeholder="URL de la Photo">
 						</div>
 					</div>
 					<div class="form-group">
