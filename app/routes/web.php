@@ -69,7 +69,8 @@ Route::get('/account/booking/{id}/{id_user}', 'ReservationController@destroy');
 //employés
 Route::get('/admin', 'PagesAdminController@index');
 Route::get('/admin/booking', 'PagesAdminController@showBooking');
-Route::get('/admin/booking/add', 'PagesAdminController@addBooking');
+Route::post('/admin/booking/add', 'PagesAdminController@addBooking');
+Route::post('/admin/booking/users/add', 'PagesAdminController@addUserFromBooking');
 Route::get('/admin/booking/del/{id}', ['uses' => 'PagesAdminController@deleteBooking']);
 Route::get('/admin/billing', 'PagesAdminController@showBilling'); //------TODO
 Route::get('/admin/clients', 'PagesAdminController@showClients');

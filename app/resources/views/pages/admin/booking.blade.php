@@ -11,7 +11,7 @@
 	<div class="row toolbar">
 		<div class="span2 p-2">
 			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#addResaModalCentered">
-				<span data-feather="user-plus"></span> @lang('admin.createEntry')
+				<span data-feather="plus"></span> @lang('admin.createEntry')
 			</button>
 		</div>
 		<div class="span4 p-2 float-right">
@@ -70,7 +70,74 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="/admin/users/add" aria-label="@lang('auth.register')">
+				<form method="POST" action="/admin/booking/add" aria-label="@lang('auth.register')">
+					@csrf
+
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="start">Date d'arrivée</label>
+							<input type="date" class="form-control" name="start" placeholder="Date d'arrivée" required>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="end">Date de départ</label>
+							<input type="date" class="form-control" name="end" placeholder="Date de départ" required>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="persons">Nb de clients</label>
+							<input type="number" class="form-control" name="persons" placeholder="1">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#addClientModalCentered">
+								<span data-feather="user-plus"></span> @lang('admin.createEntry')
+							</button>
+						</div>
+						<div class="form-group col-md-10">
+							<label for="end">Client :</label>
+							<select class="js-example-basic-single" name="id_user" required>
+								@foreach ($allClients as $client)
+								<option value="{{ $client->id }}">{{ $client->last_name }} - {{ $client->first_name }} ({{ $client->email }})</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group  col-md-4">
+							<select class="js-example-basic-single" name='id_hotel' disabled>
+								<option value='1'>@lang('global.hotel_name')</option>
+							</select>
+						</div>
+						<div class="form-group  col-md-6">
+							<select class="js-example-basic-single" name="id_room" required>
+								@foreach ($allRooms as $room)
+								<option value="{{ $room->id }}">{{ $room->number }} - {{ $room->title }} </option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="text-right">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('global.cancel')</button>
+						<button type="submit" class="btn btn-primary">@lang('admin.createEntry')</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- modal d'inscription -->
+<div class="modal fade" id="addClientModalCentered" tabindex="-1" role="dialog" aria-labelledby="addClientModalCentered" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="signinModalTitle">Créez un compte</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="POST" action="/admin/booking/users/add" aria-label="@lang('auth.register')">
 					@csrf
 
 					<label for="signinInputEmail">@lang('auth.primary')</label>

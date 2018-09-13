@@ -32,7 +32,12 @@ class PagesAdminController extends Controller
 
 	public function index()
 	{
-		$lastResa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->whereDate('start', '>=', Carbon::today())->orderBy('start', 'asc')->limit(5)->get();
+		$lastResa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')
+		 ->whereDate('start', '>=', Carbon::today())->orderBy('start', 'asc')
+		 ->limit(5)
+		 ->get([
+			'start', 'end', 'reservation.persons', 'last_name', 'first_name', 'phone',
+			'room.number', 'room.title']);
 
 //		$statBook	 = '[3, 4, 3, 0, 2, 2, 3]';
 //		$statBook	 = DB::table('reservation')->whereDate(['start', '<=', Carbon::today()], ['end', '<', Carbon::today()])->count();
@@ -67,20 +72,48 @@ class PagesAdminController extends Controller
 	 */
 	public function showBooking()
 	{
-		$resa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->get();
+		$resa		 = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->get(['start', 'end', 'reservation.persons', 'last_name', 'first_name', 'phone',
+			'room.number', 'room.title']);
+		$allClients	 = DB::table('user')->where('id_profil', 3)->get(['id', 'email', 'first_name', 'last_name']);
+		$allRooms	 = DB::table('room')->get(['id', 'number', 'title']);
 //		dd($resa);
-		return view('pages.admin.booking', ['allResas' => $resa]);
+		return view('pages.admin.booking', ['allResas' => $resa, 'allClients' => $allClients, 'allRooms' => $allRooms]);
 	}
 
-	public function addBooking()
+	public function addBooking(Request $request)
 	{
-		$resa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->get();
-//		dd($resa);
-//		return view('pages.admin.booking', ['allResas' => $resa]);
+		\App\Reservation::create([
+			'start'			 => $request->get('start'),
+			'end'			 => $request->get('end'),
+			'persons'		 => $request->get('persons') ? $request->get('persons') : 1,
+			'id_user'		 => $request->get('id_user'),
+			'id_room'		 => $request->get('id_room'),
+			'id_specials'	 => $request->get('id_specials') ? $request->get('id_specials') : null,
+		]);
 		return redirect('/admin/booking');
 	}
 
-	public function deleteBooking()
+	public function addUserFromBooking(Request $request)
+	{
+		\App\User::create([
+			'first_name' => $request->get('first_name') ? $request->get('first_name') : null,
+			'last_name'	 => $request->get('last_name') ? $request->get('last_name') : null,
+			'email'		 => $request->get('email') ? $request->get('email') : null,
+			'phone'		 => $request->get('phone') ? $request->get('phone') : null,
+			'password'	 => Hash::make($request->get('password')),
+			'id_address' => $request->get('id_address') ? $request->get('id_address') : null,
+			'id_profil'	 => $request->get('id_profil') ? $request->get('id_profil') : 3,
+			'id_gender'	 => $request->get('id_gender') ? $request->get('id_gender') : 1,
+			'rgpd_date'	 => $request->get('rgpd_date') ? $request->get('rgpd_date') : now(),
+			'newsletter' => $request->get('newsletter') ? $request->get('newsletter') : 0,
+			'ip_address' => $request->get('ip_address') ? $request->get('ip_address') : '0.0.0.0',
+			'user_agent' => $request->get('user_agent') ? $request->get('user_agent') : 'NC',
+		]);
+
+		return redirect('/admin/booking');
+	}
+
+	public function deleteBooking($id)
 	{
 		$resa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')->get();
 //		dd($resa);

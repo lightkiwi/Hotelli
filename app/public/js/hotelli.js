@@ -39,4 +39,8 @@ $(document).ready(function () {
             window.location.replace('/admin/rooms/del/' + id);
         }
     });
+
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+    });
 });

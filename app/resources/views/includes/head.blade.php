@@ -18,3 +18,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.js"></script>
 <script type="text/javascript" charset="UTF-8" src="{{ asset('js/hotelli.js') }}" ></script>
+<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+<script src="{{ asset('js/select2.min.js') }}"></script>

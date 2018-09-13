@@ -3,5 +3,6 @@
 
 <script src="{{ asset('js/feather.min.js') }}"></script>
 <script>
-feather.replace();</script>
+feather.replace();
+</script>
 
