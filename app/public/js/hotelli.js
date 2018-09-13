@@ -23,7 +23,7 @@ $(document).ready(function () {
      * Gestion des utilisateurs
      */
     $('#user-select-del').click(function () {
-        if (confirm('êtes-vous sûr de vouloir surrpimer cet utilisateur ?')) {
+        if (confirm('êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
             var id = $('.tr-selected').attr('data-id');
             window.location.replace('/admin/users/del/' + id);
         }
@@ -34,7 +34,7 @@ $(document).ready(function () {
      */
 
     $('#room-select-del').click(function () {
-        if (confirm('êtes-vous sûr de vouloir surrpimer cet utilisateur ?')) {
+        if (confirm('êtes-vous sûr de vouloir supprimer cette chambre ?')) {
             var id = $('.tr-selected').attr('data-id');
             window.location.replace('/admin/rooms/del/' + id);
         }
