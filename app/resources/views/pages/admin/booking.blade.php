@@ -13,6 +13,9 @@
 			<button class="btn btn-primary" style='color: white;' data-toggle="modal" data-target="#addResaModalCentered">
 				<span data-feather="plus"></span> @lang('admin.createEntry')
 			</button>
+			<button id='book-select-del' class="btn btn-danger book-select" disabled>
+				<span data-feather="minus"></span> Supprimer
+			</button>
 		</div>
 		<div class="span4 p-2 float-right">
 			<form class="form-search">
@@ -37,7 +40,7 @@
 			</thead>
 			<tbody>
 				@foreach ($allResas as $resa)
-				<tr>
+				<tr data-id="{{ $resa->id }}">
 					<td class="inner-table">{{ $resa->start }}</td>
 					<td class="inner-table">{{ $resa->end }}</td>
 					<td class="inner-table">{{ $resa->persons }}</td>

@@ -14,6 +14,7 @@ $(document).ready(function () {
     $('.container-admin .table-responsive tbody tr').click(function () {
         $('.user-select').prop("disabled", false);
         $('.room-select').prop("disabled", false);
+        $('.book-select').prop("disabled", false);
         $('.container-admin .table-responsive tbody tr').each(function () {
             $(this).removeClass('tr-selected');
         });
@@ -37,6 +38,22 @@ $(document).ready(function () {
         if (confirm('êtes-vous sûr de vouloir supprimer cette chambre ?')) {
             var id = $('.tr-selected').attr('data-id');
             window.location.replace('/admin/rooms/del/' + id);
+        }
+    });
+    $('#room-select-change').click(function () {
+//        if (confirm('êtes-vous sûr de vouloir supprimer cette réservation ?')) {
+        var id = $('.tr-selected').attr('data-id');
+        window.location.replace('/admin/rooms/change/' + id);
+//        }
+    });
+    /**
+     * Gestion des chambres
+     */
+
+    $('#book-select-del').click(function () {
+        if (confirm('êtes-vous sûr de vouloir supprimer cette réservation ?')) {
+            var id = $('.tr-selected').attr('data-id');
+            window.location.replace('/admin/booking/del/' + id);
         }
     });
 

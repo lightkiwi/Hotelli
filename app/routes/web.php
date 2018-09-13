@@ -82,6 +82,7 @@ Route::get('/admin/hotel', 'PagesAdminController@showHotel'); //------TODO
 Route::get('/admin/rooms', 'PagesAdminController@showRooms');
 Route::post('/admin/rooms/add', 'PagesAdminController@addRoom');
 Route::get('/admin/rooms/del/{id}', ['uses' => 'PagesAdminController@deleteRoom']);
+Route::get('/admin/rooms/change/{id}', ['uses' => 'PagesAdminController@changeRoom']);
 Route::get('/admin/stat', 'PagesAdminController@showStats'); //------TODO
 
 

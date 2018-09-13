@@ -14,20 +14,15 @@
 				<option>@lang('global.hotel_name')</option>
 			</select>
 		</div>
-		<!--		<div class="span4 p-2">
-					<form class="form-search">
-						<div class="input-append">
-							<input type="text" class="span2" disabled>
-							<button type="submit" class="btn" disabled>@lang('search.search')</button>
-						</div>
-					</form>
-				</div>-->
 		<div class="span2 p-2">
 			<button class="btn btn-primary room-select" style='color: white;' data-toggle="modal" data-target="#addRoomModalCentered">
 				<span data-feather="plus"></span> @lang('admin.createEntry')
 			</button>
 			<button id='room-select-del' class="btn btn-danger room-select" disabled>
 				<span data-feather="minus"></span> Supprimer
+			</button>
+			<button id='room-select-change' class="btn btn-warning room-select" disabled>
+				<span data-feather="alert-circle"></span> Changer le statut
 			</button>
 		</div>
 	</div>
@@ -39,15 +34,17 @@
 			<td>@lang('admin.room_description')</td>
 			<td>@lang('admin.room_score')</td>
 			<td>@lang('admin.room_persons')</td>
+			<td>Statut</td>
 			</thead>
 			<tbody>
 				@foreach ($rooms as $room)
-				<tr>
+				<tr data-id="{{ $room->id }}">
 					<td class="inner-table">{{ $room->number }}</td>
 					<td class="inner-table">{{ $room->title }}</td>
 					<td class="inner-table">{{ $room->description }}</td>
 					<td class="inner-table">{{ $room->score }}</td>
 					<td class="inner-table">{{ $room->persons }}</td>
+					<td class="inner-table">{{ $room->label }}</td>
 				</tr>
 				@endforeach
 			</tbody>

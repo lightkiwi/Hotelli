@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,6 +45,9 @@ class DatabaseSeeder extends Seeder
 			'label' => 'disponible'
 		]);
 		DB::table('state')->insert([
+			'label' => 'indisponible'
+		]);
+		DB::table('state')->insert([
 			'label' => 'en travaux'
 		]);
 		DB::table('state')->insert([
@@ -77,37 +81,61 @@ class DatabaseSeeder extends Seeder
 			'country'		 => 'Hongrie',
 		]);
 
-        //initialisation utilisateurs
-        DB::table('user')->insert([
-            'first_name' => 'admin',
-            'last_name' => 'hotelli',
-            'email' => 'admin@hotelli.fr',
-            'phone' => '0424422442',
-            'password' => Hash::make('hotelli'),
-            'id_address' => '1',
-            'id_profil' => 1,
-            'id_gender' => 4,
-        ]);
-        DB::table('user')->insert([
-            'first_name' => 'employe',
-            'last_name' => 'hotelli',
-            'email' => 'employe@hotelli.fr',
-            'phone' => '0424422442',
-            'password' => Hash::make('hotelli'),
-            'id_address' => '1',
-            'id_profil' => 2,
-            'id_gender' => 4,
-        ]);
-        DB::table('user')->insert([
-            'first_name' => 'user',
-            'last_name' => 'hotelli',
-            'email' => 'user@hotelli.fr',
-            'phone' => '0424422442',
-            'password' => Hash::make('hotelli'),
-            'id_address' => '1',
-            'id_profil' => 3,
-            'id_gender' => 4,
-        ]);
+		//initialisation utilisateurs
+		DB::table('user')->insert([
+			'first_name' => 'admin',
+			'last_name'	 => 'hotelli',
+			'email'		 => 'admin@hotelli.fr',
+			'phone'		 => '0424422442',
+			'password'	 => Hash::make('hotelli'),
+			'id_address' => '1',
+			'id_profil'	 => 1,
+			'id_gender'	 => 4,
+		]);
+		DB::table('user')->insert([
+			'first_name' => 'employe',
+			'last_name'	 => 'hotelli',
+			'email'		 => 'employe@hotelli.fr',
+			'phone'		 => '0424422442',
+			'password'	 => Hash::make('hotelli'),
+			'id_address' => '1',
+			'id_profil'	 => 2,
+			'id_gender'	 => 4,
+		]);
+		DB::table('user')->insert([
+			'first_name' => 'user',
+			'last_name'	 => 'hotelli',
+			'email'		 => 'user@hotelli.fr',
+			'phone'		 => '0424422442',
+			'password'	 => Hash::make('hotelli'),
+			'id_address' => '1',
+			'id_profil'	 => 3,
+			'id_gender'	 => 4,
+		]);
+
+		//jeu d'utilisateurs lambda
+		$first_name = array(
+			'John',
+			'Marie',
+			'Fabien',
+			'Jennifer',
+			'Sophiane',
+			'Johnny',
+			'Barnabé',
+			'Octavie',
+		);
+		for ($i = 0; $i < 5; $i++) {
+			DB::table('user')->insert([
+				'first_name' => $first_name[$i],
+				'last_name'	 => 'hotelli',
+				'email'		 => 'user'.$i.'@gmail.fr',
+				'phone'		 => '0424422442',
+				'password'	 => Hash::make('hotelli'),
+				'id_address' => '1',
+				'id_profil'	 => 3,
+				'id_gender'	 => 4,
+			]);
+		}
 
 		//initialisation des médias
 		DB::table('media')->insert([
@@ -166,24 +194,34 @@ class DatabaseSeeder extends Seeder
 			]);
 		}
 
-        //initialisation de la table des réservations
-        DB::table('reservation')->insert([
-            'start' => date('Y-m-d'),
-            'end' => date('Y-m-d', time() + (60 * 60 * 24)),
-            'persons' => '2',
-            'id_user' => '1',
-            'id_room' => '1',
-        ]);
+		//initialisation de la table des réservations
+		DB::table('reservation')->insert([
+			'start'		 => Carbon::today(),
+			'end'		 => Carbon::today()->addDay(3),
+			'persons'	 => rand(1, 4),
+			'id_user'	 => '3',
+			'id_room'	 => '1',
+		]);
 
-        //initialisation de la table des commentaires
-        /*for ($i = 0; $i < 10; $i++) {
-            DB::table('comment')->insert([
-                'id_room' => rand(1, 5),
-                'id_user' => 1,
-                'text' => str_shuffle('azertyuiopqsdfghjklmwxcvbn'),
-                'id_parent' => null,
-                'score' => 5.4,
-            ]);
-        }*/
-    }
+		for ($i = 0; $i < 5; $i++) {
+			DB::table('reservation')->insert([
+				'start'		 => Carbon::today()->addDay(rand(1, 5)),
+				'end'		 => Carbon::today()->addDay(rand(5, 7)),
+				'persons'	 => rand(1, 4),
+				'id_user'	 => rand(4, 9),
+				'id_room'	 => $i + 1,
+			]);
+		}
+
+		//initialisation de la table des commentaires
+		/* for ($i = 0; $i < 10; $i++) {
+		  DB::table('comment')->insert([
+		  'id_room' => rand(1, 5),
+		  'id_user' => 1,
+		  'text' => str_shuffle('azertyuiopqsdfghjklmwxcvbn'),
+		  'id_parent' => null,
+		  'score' => 5.4,
+		  ]);
+		  } */
+	}
 }
