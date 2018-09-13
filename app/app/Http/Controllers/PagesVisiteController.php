@@ -240,7 +240,72 @@ class PagesVisiteController extends Controller
 
     public function booking(Request $request)
     {
-        //--TODO faire la requete pour enregistrer la reservation sans login
-        dd($request);
+        /*
+         * "_token" => "2uocjPRZFcuSHKPlZS2Ualtoc0GeI8PbnG1CbWsd"
+      "email" => "antonin.heb@gmail.com"
+      "last_name" => "HEBERT"
+      "first_name" => "Antonin"
+      "room" => "1"
+      "adult" => "1"
+      "child" => "0"
+      "dates" => "13/09/2018 - 14/09/2018"
+      "id" => "8"*/
+        $reservation = new Reservation();
+
+        $dates = explode('-', $request->input('dates'));
+
+        $start = trim($dates[0]);
+        $end = trim($dates[1]);
+
+        $repost = http_build_query(array(
+            'start' => $start,
+            'end' => $end,
+            'room' => $_POST['room'],
+            'adult' => $_POST['adult'],
+            'child' => $_POST['child'],
+        ));
+
+        $id_room = $request->input('id');
+        if (empty($id_room)) return Redirect::to('/');
+
+        $redirect = Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
+
+        $persons = (int)$request->input('adult') + (int)$request->input('child');
+        if (!($persons > 0)) return $redirect;
+
+        $format = 'd/m/Y';
+
+        $carbon_start = Carbon::createFromFormat($format, $start);
+        $carbon_end = Carbon::createFromFormat($format, $end);
+
+
+        $id_user = DB::table('user')->insertGetId([
+            'email'=> $request->input('email'),
+            'first_name'=> $request->input('first_name'),
+            'last_name'=> $request->input('last_name'),
+        ]);
+
+        $reservation->start = $carbon_start;
+        $reservation->end = $carbon_end;
+        $reservation->id_user = $id_user;
+        $reservation->id_room = $id_room;
+        //$reservation->id_specials = $request->input('');
+        $reservation->persons = $persons;
+
+        $reservation->save();
+
+
+        $room = \App\Room::find($id_room);
+
+        $recap = array(
+            'title' => $room->title,
+            'number' => $room->number,
+            'dates' => $request->input('dates'),
+            'persons' => $persons,
+            'price' => $room->price,
+            'total' => ($room->price * $carbon_start->diff($carbon_end)->days),
+        );
+
+        return view('pages.room.recap', compact('recap'));
     }
 }

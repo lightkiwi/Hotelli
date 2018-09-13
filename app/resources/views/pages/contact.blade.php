@@ -14,7 +14,7 @@
                     <br>
 
                     <p><b>Téléphone :</b><br>
-                        0424 42 24 42 (appel non surtaxé)<br>
+                        04 24 42 24 42 (appel non surtaxé)<br>
                         Ouvert du lundi au samedi de 10h à 22h<br>
                         Dimanche : 11h à 19h</p>
 

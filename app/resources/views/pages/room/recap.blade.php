@@ -44,7 +44,8 @@
                 </div>
 
                 <a href="/" class="btn btn-dark float-right">Retour</a>
-                <a href="/print" class="btn btn-dark float-right mr-2">Imprimer</a>
+                <a href="javascript:void(0);" onclick="window.print();"
+                   class="btn btn-dark float-right mr-2">Imprimer</a>
             </div>
         </div>
     @else

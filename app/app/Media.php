@@ -9,6 +9,7 @@ class Media extends Model
     protected $table = "media";
 
     protected $fillable = [
+        'id',
         'path',
     ];
 
