@@ -13,15 +13,6 @@
 use Illuminate\Support\Facades\View;
 
 Route::resource('/user', 'UserController');
-//Route::resource('/room', 'RoomController');
-//Route::resource('/address', 'AddressController');
-//Route::resource('/hotel', 'HotelController');
-//Route::resource('/profil', 'ProfilController');
-//Route::resource('/gender', 'GenderController');
-//Route::resource('/type', 'TypeController');
-//Route::resource('/specials', 'SpecialsController');
-//Route::resource('/media', 'MediaController');
-//Route::resource('/comment', 'CommentController');
 
 Auth::routes();
 
@@ -74,6 +65,7 @@ Route::post('/admin/booking/users/add', 'PagesAdminController@addUserFromBooking
 Route::get('/admin/booking/del/{id}', ['uses' => 'PagesAdminController@deleteBooking']);
 Route::get('/admin/billing', 'PagesAdminController@showBilling'); //------TODO
 Route::get('/admin/clients', 'PagesAdminController@showClients');
+Route::post('/admin/clients/add', 'PagesAdminController@addClient');
 //administrateurs
 Route::get('/admin/users', 'PagesAdminController@showUsers');
 Route::post('/admin/users/add', 'PagesAdminController@addUser');

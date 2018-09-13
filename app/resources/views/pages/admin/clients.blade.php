@@ -79,7 +79,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="/admin/users/add" aria-label="@lang('auth.register')">
+				<form method="POST" action="/admin/clients/add" aria-label="@lang('auth.register')">
 					@csrf
 
 					<label for="signinInputEmail">@lang('auth.primary')</label>

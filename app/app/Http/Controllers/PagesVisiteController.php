@@ -26,286 +26,309 @@ use MongoDB\BSON\Javascript;
 class PagesVisiteController extends Controller
 {
 
-    /**
-     * Page d'accueil
-     * @return type
-     */
-    public function index()
-    {
-        return view('pages.home');
-    }
+	/**
+	 * Page d'accueil
+	 * @return type
+	 */
+	public function index()
+	{
+		return view('pages.home');
+	}
 
-    public function faq()
-    {
-        return view('pages.faq');
-    }
+	/**
+	 * Page FAQ
+	 * @return type
+	 */
+	public function faq()
+	{
+		return view('pages.faq');
+	}
 
-    public function cgu()
-    {
-        return view('pages.cgu');
-    }
+	/**
+	 * Page CGU
+	 * @return type
+	 */
+	public function cgu()
+	{
+		return view('pages.cgu');
+	}
 
-    public function cookies()
-    {
-        return view('pages.cookies');
-    }
+	/**
+	 * Page Cookies
+	 * @return type
+	 */
+	public function cookies()
+	{
+		return view('pages.cookies');
+	}
 
-    public function contact()
-    {
-        return view('pages.contact');
-    }
+	/**
+	 * Page contacts
+	 * @return type
+	 */
+	public function contact()
+	{
+		return view('pages.contact');
+	}
+	/**
+	 * Gestion du login
+	 *
+	 * @param \App\Http\Controllers\Request $request
+	 * @return type
+	 */
+//	public function login(Request $request)
+//	{
+//		$loginOk = [
+//			'etat'	 => true,
+//			'info'	 => 'Connexion réussie !'
+//		];
+//		$loginKo = [
+//			'etat'	 => false,
+//			'info'	 => 'Connexion échouée, merci de vérifier vos identifiants de connexion'
+//		];
+//		//vérification du login
+//		if ($request->input('loginModalFormEmail') !== null && $request->input('loginModalFormPassword') !== null) {
+//
+//			$_SESSION['connected']		 = true;
+////			$_SESSION['profil'] = [];
+////			$_SESSION['profil']['date_login'] = date();
+//			$_SESSION['profil']['id']	 = 3;
+//			$_SESSION['profil']['email'] = $request->input('loginModalFormEmail');
+//			$infoLogin					 = $loginOk;
+//		} else {
+//			$infoLogin = $loginKo;
+//		}
+//		//retour à la page d'accueil
+//
+//		return redirect('/');
+////		return view('pages.home', compact('infoLogin'));
+//	}
+//	public function singin(Request $request)
+//	{
+//		$infoSignin = null;
+//
+//		return view('pages.home', compact('infoSignin'));
+//	}
 
-    /**
-     * Gestion du login
-     *
-     * @param \App\Http\Controllers\Request $request
-     * @return type
-     */
-    public function login(Request $request)
-    {
-        $loginOk = [
-            'etat' => true,
-            'info' => 'Connexion réussie !'
-        ];
-        $loginKo = [
-            'etat' => false,
-            'info' => 'Connexion échouée, merci de vérifier vos identifiants de connexion'
-        ];
-        //vérification du login
-        if ($request->input('loginModalFormEmail') !== null && $request->input('loginModalFormPassword') !== null) {
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function detail($id, Request $request)
+	{
+		$room = \App\Room::leftJoin('media', 'room.id_media', '=', 'media.id')
+		 ->find($id);
 
-            $_SESSION['connected'] = true;
-//			$_SESSION['profil'] = [];
-//			$_SESSION['profil']['date_login'] = date();
-            $_SESSION['profil']['id'] = 3;
-            $_SESSION['profil']['email'] = $request->input('loginModalFormEmail');
-            $infoLogin = $loginOk;
-        } else {
-            $infoLogin = $loginKo;
-        }
-        //retour à la page d'accueil
+		$reservations = DB::table('reservation')
+		  ->where('id_room', '=', $id)->get();
 
-        return redirect('/');
-//		return view('pages.home', compact('infoLogin'));
-    }
+		$reservations = $reservations->toArray();
 
-    public function singin(Request $request)
-    {
-        $infoSignin = null;
+		$dates = array();
 
-        return view('pages.home', compact('infoSignin'));
-    }
+		foreach ($reservations as $date) {
+			$dates[] = array(date('d/m/Y', strtotime($date->start)), date('d/m/Y', strtotime($date->end)));
+		}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function detail($id, Request $request)
-    {
-        $room = \App\Room::leftJoin('media', 'room.id_media', '=', 'media.id')
-            ->find($id);
+		$comments = Comment::leftJoin('user', 'comment.id_user', '=', 'user.id')
+		  ->where('id_room', '=', $id)->get();
 
-        $reservations = DB::table('reservation')
-            ->where('id_room', '=', $id)->get();
+		$score		 = $count_score = 0;
+		foreach ($comments as $comment) {
+			$score += $comment->score;
+			$count_score++;
+		}
+		if ($count_score > 0) {
+			$room->score = round(($score / $count_score), 1);
+		} else {
+			$room->score = '-';
+		}
 
-        $reservations = $reservations->toArray();
+		return view('pages.room.room', compact('room', 'request', 'dates', 'comments'));
+	}
 
-        $dates = array();
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store(Request $request)
+	{
+		// validate
+		// read more on validation at http://laravel.com/docs/validation
+		if (Auth::check()) {
+			$reservation = new Reservation();
 
-        foreach ($reservations as $date) {
-            $dates[] = array(date('d/m/Y', strtotime($date->start)), date('d/m/Y', strtotime($date->end)));
-        }
+			$dates = explode('-', $request->input('dates'));
 
-        $comments = Comment::leftJoin('user', 'comment.id_user', '=', 'user.id')
-            ->where('id_room', '=', $id)->get();
+			$start	 = trim($dates[0]);
+			$end	 = trim($dates[1]);
 
-        $score = $count_score = 0;
-        foreach ($comments as $comment) {
-            $score += $comment->score;
-            $count_score++;
-        }
-        if ($count_score > 0) {
-            $room->score = round(($score / $count_score), 1);
-        } else {
-            $room->score = '-';
-        }
+			$repost = http_build_query(array(
+				'start'	 => $start,
+				'end'	 => $end,
+				'room'	 => $_POST['room'],
+				'adult'	 => $_POST['adult'],
+				'child'	 => $_POST['child'],
+			));
 
-        return view('pages.room.room', compact('room', 'request', 'dates', 'comments'));
-    }
+			$id_room = $request->input('id_room');
+			if (empty($id_room)) return Redirect::to('/');
 
+			$redirect = Redirect::to('/room/'.$id_room.'?'.str_replace('/', '-', urldecode($repost)));
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        if (Auth::check()) {
-            $reservation = new Reservation();
+			$persons = (int) $request->input('adult') + (int) $request->input('child');
+			if (!($persons > 0)) return $redirect;
 
-            $dates = explode('-', $request->input('dates'));
+			$format = 'd/m/Y';
 
-            $start = trim($dates[0]);
-            $end = trim($dates[1]);
+			$carbon_start	 = Carbon::createFromFormat($format, $start);
+			$carbon_end		 = Carbon::createFromFormat($format, $end);
 
-            $repost = http_build_query(array(
-                'start' => $start,
-                'end' => $end,
-                'room' => $_POST['room'],
-                'adult' => $_POST['adult'],
-                'child' => $_POST['child'],
-            ));
+			$reservation->start		 = $carbon_start;
+			$reservation->end		 = $carbon_end;
+			$reservation->id_user	 = Auth::user()->id;
+			$reservation->id_room	 = $id_room;
+			//$reservation->id_specials = $request->input('');
+			$reservation->persons	 = $persons;
 
-            $id_room = $request->input('id_room');
-            if (empty($id_room)) return Redirect::to('/');
-
-            $redirect = Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
-
-            $persons = (int)$request->input('adult') + (int)$request->input('child');
-            if (!($persons > 0)) return $redirect;
-
-            $format = 'd/m/Y';
-
-            $carbon_start = Carbon::createFromFormat($format, $start);
-            $carbon_end = Carbon::createFromFormat($format, $end);
-
-            $reservation->start = $carbon_start;
-            $reservation->end = $carbon_end;
-            $reservation->id_user = Auth::user()->id;
-            $reservation->id_room = $id_room;
-            //$reservation->id_specials = $request->input('');
-            $reservation->persons = $persons;
-
-            $reservation->save();
-
-
-            $room = \App\Room::find($id_room);
-
-            $recap = array(
-                'title' => $room->title,
-                'number' => $room->number,
-                'dates' => $request->input('dates'),
-                'persons' => $persons,
-                'price' => $room->price,
-                'total' => ($room->price * $carbon_start->diff($carbon_end)->days),
-            );
-
-            return view('pages.room.recap', compact('recap'));
-        } else {
-            $dates = explode('-', $request->input('dates'));
-
-            $start = trim($dates[0]);
-            $end = trim($dates[1]);
-
-            $repost = http_build_query(array(
-                'start' => $start,
-                'end' => $end,
-                'room' => $_POST['room'],
-                'adult' => $_POST['adult'],
-                'child' => $_POST['child'],
-            ));
-
-            $id_room = $request->input('id_room');
-            if (empty($id_room)) return Redirect::to('/');
-
-            $redirect = Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
-
-            $persons = (int)$request->input('adult') + (int)$request->input('child');
-            if (!($persons > 0)) return $redirect;
-
-            $format = 'd/m/Y';
-
-            $carbon_start = Carbon::createFromFormat($format, $start);
-            $carbon_end = Carbon::createFromFormat($format, $end);
-
-            $request->start = $carbon_start;
-            $request->end = $carbon_end;
-            $request->id_room = $id_room;
-            $request->persons = $persons;
-
-            return view('pages.room.now', compact('request'));
-        }
-    }
-
-    public function search(Request $request)
-    {
-        $roomController = new RoomController();
-        return $roomController->index($request);
-    }
-
-    public function booking(Request $request)
-    {
-        /*
-         * "_token" => "2uocjPRZFcuSHKPlZS2Ualtoc0GeI8PbnG1CbWsd"
-      "email" => "antonin.heb@gmail.com"
-      "last_name" => "HEBERT"
-      "first_name" => "Antonin"
-      "room" => "1"
-      "adult" => "1"
-      "child" => "0"
-      "dates" => "13/09/2018 - 14/09/2018"
-      "id" => "8"*/
-        $reservation = new Reservation();
-
-        $dates = explode('-', $request->input('dates'));
-
-        $start = trim($dates[0]);
-        $end = trim($dates[1]);
-
-        $repost = http_build_query(array(
-            'start' => $start,
-            'end' => $end,
-            'room' => $_POST['room'],
-            'adult' => $_POST['adult'],
-            'child' => $_POST['child'],
-        ));
-
-        $id_room = $request->input('id');
-        if (empty($id_room)) return Redirect::to('/');
-
-        $redirect = Redirect::to('/room/' . $id_room . '?' . str_replace('/', '-', urldecode($repost)));
-
-        $persons = (int)$request->input('adult') + (int)$request->input('child');
-        if (!($persons > 0)) return $redirect;
-
-        $format = 'd/m/Y';
-
-        $carbon_start = Carbon::createFromFormat($format, $start);
-        $carbon_end = Carbon::createFromFormat($format, $end);
+			$reservation->save();
 
 
-        $id_user = DB::table('user')->insertGetId([
-            'email'=> $request->input('email'),
-            'first_name'=> $request->input('first_name'),
-            'last_name'=> $request->input('last_name'),
-        ]);
+			$room = \App\Room::find($id_room);
 
-        $reservation->start = $carbon_start;
-        $reservation->end = $carbon_end;
-        $reservation->id_user = $id_user;
-        $reservation->id_room = $id_room;
-        //$reservation->id_specials = $request->input('');
-        $reservation->persons = $persons;
+			$recap = array(
+				'title'		 => $room->title,
+				'number'	 => $room->number,
+				'dates'		 => $request->input('dates'),
+				'persons'	 => $persons,
+				'price'		 => $room->price,
+				'total'		 => ($room->price * $carbon_start->diff($carbon_end)->days),
+			);
 
-        $reservation->save();
+			return view('pages.room.recap', compact('recap'));
+		} else {
+			$dates = explode('-', $request->input('dates'));
+
+			$start	 = trim($dates[0]);
+			$end	 = trim($dates[1]);
+
+			$repost = http_build_query(array(
+				'start'	 => $start,
+				'end'	 => $end,
+				'room'	 => $_POST['room'],
+				'adult'	 => $_POST['adult'],
+				'child'	 => $_POST['child'],
+			));
+
+			$id_room = $request->input('id_room');
+			if (empty($id_room)) return Redirect::to('/');
+
+			$redirect = Redirect::to('/room/'.$id_room.'?'.str_replace('/', '-', urldecode($repost)));
+
+			$persons = (int) $request->input('adult') + (int) $request->input('child');
+			if (!($persons > 0)) return $redirect;
+
+			$format = 'd/m/Y';
+
+			$carbon_start	 = Carbon::createFromFormat($format, $start);
+			$carbon_end		 = Carbon::createFromFormat($format, $end);
+
+			$request->start		 = $carbon_start;
+			$request->end		 = $carbon_end;
+			$request->id_room	 = $id_room;
+			$request->persons	 = $persons;
+
+			return view('pages.room.now', compact('request'));
+		}
+	}
+
+	/**
+	 * Page de recherche
+	 * @param Request $request
+	 * @return type
+	 */
+	public function search(Request $request)
+	{
+		$roomController = new RoomController();
+		return $roomController->index($request);
+	}
+
+	/**
+	 * Page de réservation
+	 * @param Request $request
+	 * @return type
+	 */
+	public function booking(Request $request)
+	{
+		/*
+		 * "_token" => "2uocjPRZFcuSHKPlZS2Ualtoc0GeI8PbnG1CbWsd"
+		  "email" => "antonin.heb@gmail.com"
+		  "last_name" => "HEBERT"
+		  "first_name" => "Antonin"
+		  "room" => "1"
+		  "adult" => "1"
+		  "child" => "0"
+		  "dates" => "13/09/2018 - 14/09/2018"
+		  "id" => "8" */
+		$reservation = new Reservation();
+
+		$dates = explode('-', $request->input('dates'));
+
+		$start	 = trim($dates[0]);
+		$end	 = trim($dates[1]);
+
+		$repost = http_build_query(array(
+			'start'	 => $start,
+			'end'	 => $end,
+			'room'	 => $_POST['room'],
+			'adult'	 => $_POST['adult'],
+			'child'	 => $_POST['child'],
+		));
+
+		$id_room = $request->input('id');
+		if (empty($id_room)) return Redirect::to('/');
+
+		$redirect = Redirect::to('/room/'.$id_room.'?'.str_replace('/', '-', urldecode($repost)));
+
+		$persons = (int) $request->input('adult') + (int) $request->input('child');
+		if (!($persons > 0)) return $redirect;
+
+		$format = 'd/m/Y';
+
+		$carbon_start	 = Carbon::createFromFormat($format, $start);
+		$carbon_end		 = Carbon::createFromFormat($format, $end);
 
 
-        $room = \App\Room::find($id_room);
+		$id_user = DB::table('user')->insertGetId([
+			'email'		 => $request->input('email'),
+			'first_name' => $request->input('first_name'),
+			'last_name'	 => $request->input('last_name'),
+		]);
 
-        $recap = array(
-            'title' => $room->title,
-            'number' => $room->number,
-            'dates' => $request->input('dates'),
-            'persons' => $persons,
-            'price' => $room->price,
-            'total' => ($room->price * $carbon_start->diff($carbon_end)->days),
-        );
+		$reservation->start		 = $carbon_start;
+		$reservation->end		 = $carbon_end;
+		$reservation->id_user	 = $id_user;
+		$reservation->id_room	 = $id_room;
+		//$reservation->id_specials = $request->input('');
+		$reservation->persons	 = $persons;
 
-        return view('pages.room.recap', compact('recap'));
-    }
+		$reservation->save();
+
+
+		$room = \App\Room::find($id_room);
+
+		$recap = array(
+			'title'		 => $room->title,
+			'number'	 => $room->number,
+			'dates'		 => $request->input('dates'),
+			'persons'	 => $persons,
+			'price'		 => $room->price,
+			'total'		 => ($room->price * $carbon_start->diff($carbon_end)->days),
+		);
+
+		return view('pages.room.recap', compact('recap'));
+	}
 }

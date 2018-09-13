@@ -30,6 +30,10 @@ class PagesAdminController extends Controller
 		$this->middleware('auth');
 	}
 
+	/**
+	 * Accueil du dashboard administration
+	 * @return type
+	 */
 	public function index()
 	{
 		$lastResa = DB::table('reservation')->leftjoin('user', 'id_user', '=', 'user.id')->leftjoin('room', 'id_room', '=', 'room.id')
@@ -39,8 +43,6 @@ class PagesAdminController extends Controller
 			'start', 'end', 'reservation.persons', 'last_name', 'first_name', 'phone',
 			'room.number', 'room.title']);
 
-//		$statBook	 = '[3, 4, 3, 0, 2, 2, 3]';
-//		$statBook	 = DB::table('reservation')->whereDate(['start', '<=', Carbon::today()], ['end', '<', Carbon::today()])->count();
 		$dateNow	 = Carbon::today();
 		$statBook1	 = DB::table('reservation')->whereDate('start', '<=', $dateNow)->whereDate('end', '>', $dateNow)->count();
 		$statBook2	 = DB::table('reservation')->whereDate('start', '<=', $dateNow->addDay(1))->whereDate('end', '>', $dateNow)->count();
@@ -68,6 +70,7 @@ class PagesAdminController extends Controller
 
 	/**
 	 * ------------------------------------------------------------------------------------------
+	 * ----- Pages de gestion des réservations
 	 * @return type
 	 */
 	public function showBooking()
@@ -84,6 +87,11 @@ class PagesAdminController extends Controller
 		return view('pages.admin.booking', ['allResas' => $resa, 'allClients' => $allClients, 'allRooms' => $allRooms]);
 	}
 
+	/**
+	 * Ajout de réservation
+	 * @param Request $request
+	 * @return type
+	 */
 	public function addBooking(Request $request)
 	{
 		\App\Reservation::create([
@@ -97,6 +105,11 @@ class PagesAdminController extends Controller
 		return redirect('/admin/booking');
 	}
 
+	/**
+	 * Ajout d'un client depuis la page de gestion des réservations
+	 * @param Request $request
+	 * @return type
+	 */
 	public function addUserFromBooking(Request $request)
 	{
 		\App\User::create([
@@ -117,6 +130,11 @@ class PagesAdminController extends Controller
 		return redirect('/admin/booking');
 	}
 
+	/**
+	 * Suppression d'une réservation
+	 * @param type $id
+	 * @return type
+	 */
 	public function deleteBooking($id)
 	{
 		if ($id) {
@@ -126,16 +144,47 @@ class PagesAdminController extends Controller
 		return redirect('/admin/booking');
 	}
 
+	/**
+	 * ----- Pages de gestion des facturation @todo
+	 */
 	public function showBilling()
 	{
 		return view('pages.admin.billing');
 	}
 
+	/**
+	 * ----- Pages de gestion des clients
+	 */
 	public function showClients()
 	{
 		$users = DB::table('user')->where('id_profil', 3)->get(['email', 'first_name', 'last_name', 'phone', 'rgpd_date', 'newsletter']);
 
 		return view('pages.admin.clients', ['allUsers' => $users]);
+	}
+
+	/**
+	 * Ajout de client
+	 * @param Request $request
+	 * @return type
+	 */
+	public function addClient(Request $request)
+	{
+		\App\User::create([
+			'first_name' => $request->get('first_name') ? $request->get('first_name') : null,
+			'last_name'	 => $request->get('last_name') ? $request->get('last_name') : null,
+			'email'		 => $request->get('email') ? $request->get('email') : null,
+			'phone'		 => $request->get('phone') ? $request->get('phone') : null,
+			'password'	 => Hash::make($request->get('password')),
+			'id_address' => $request->get('id_address') ? $request->get('id_address') : null,
+			'id_profil'	 => $request->get('id_profil') ? $request->get('id_profil') : 3,
+			'id_gender'	 => $request->get('id_gender') ? $request->get('id_gender') : 1,
+			'rgpd_date'	 => $request->get('rgpd_date') ? $request->get('rgpd_date') : now(),
+			'newsletter' => $request->get('newsletter') ? $request->get('newsletter') : 0,
+			'ip_address' => $request->get('ip_address') ? $request->get('ip_address') : '0.0.0.0',
+			'user_agent' => $request->get('user_agent') ? $request->get('user_agent') : 'NC',
+		]);
+
+		return redirect('/admin/clients');
 	}
 	/**
 	 * ------------------------------------------------------------------------------------------
@@ -145,7 +194,7 @@ class PagesAdminController extends Controller
 
 	/**
 	 * ------------------------------------------------------------------------------------------
-	 * Gestion des utilisateurs
+	 * ----- Pages de Gestion des utilisateurs
 	 * @return type
 	 */
 	public function showUsers()
@@ -156,6 +205,11 @@ class PagesAdminController extends Controller
 		return view('pages.admin.users', ['allUsers' => $users, 'profils' => $profils]);
 	}
 
+	/**
+	 * Ajout d'utilisateur
+	 * @param Request $request
+	 * @return type
+	 */
 	public function addUser(Request $request)
 	{
 		\App\User::create([
@@ -176,6 +230,11 @@ class PagesAdminController extends Controller
 		return redirect('/admin/users');
 	}
 
+	/**
+	 * Suppression d'un utilisateur
+	 * @param type $id
+	 * @return type
+	 */
 	public function deleteUser($id)
 	{
 //		$id = $request->get('id') ? $request->get('id') : null;
@@ -186,6 +245,10 @@ class PagesAdminController extends Controller
 		return redirect('/admin/users');
 	}
 
+	/**
+	 * ----- Pages de Gestion des hotels
+	 * @return type
+	 */
 	public function showHotel()
 	{
 		return view('pages.admin.hotel');
@@ -193,7 +256,7 @@ class PagesAdminController extends Controller
 
 	/**
 	 * ------------------------------------------------------------------------------------------
-	 * Gestion des chambres
+	 * ----- Pages de Gestion des chambres
 	 * @return type
 	 */
 	public function showRooms()
@@ -204,6 +267,11 @@ class PagesAdminController extends Controller
 		return view('pages.admin.rooms', ['rooms' => $rooms]);
 	}
 
+	/**
+	 * Ajout de chambre
+	 * @param Request $request
+	 * @return type
+	 */
 	public function addRoom(Request $request)
 	{
 		$id_media = DB::table('media')->insertGetId([
@@ -227,6 +295,11 @@ class PagesAdminController extends Controller
 		return redirect('/admin/rooms');
 	}
 
+	/**
+	 * Suppression de chambre
+	 * @param type $id
+	 * @return type
+	 */
 	public function deleteRoom($id)
 	{
 		if ($id) {
@@ -236,6 +309,11 @@ class PagesAdminController extends Controller
 		return redirect('/admin/rooms');
 	}
 
+	/**
+	 * Changement de statut d'une chambre
+	 * @param type $id
+	 * @return type
+	 */
 	public function changeRoom($id)
 	{
 		if ($id) {
@@ -249,6 +327,10 @@ class PagesAdminController extends Controller
 		return redirect('/admin/rooms');
 	}
 
+	/**
+	 * ----- Pages de Statistiques
+	 * @return type
+	 */
 	public function showStats()
 	{
 		return view('pages.admin.stats');
