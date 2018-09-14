@@ -5,8 +5,9 @@
 		@include('includes.admin.css')
 	</head>
 	<body>
-
-		@include('includes.admin.header')
+		<header>
+			@include('includes.admin.header')
+		</header>
 		<div class="container-fluid container-admin">
 			<div class="row">
 				@include('includes.admin.nav')
@@ -15,8 +16,9 @@
 				</main>
 			</div>
 		</div>
-		@include('includes.admin.footer')
-
+		<footer>
+			@include('includes.admin.footer')
+		</footer>
 		@include('includes.admin.modal')
 	</body>
 </html>

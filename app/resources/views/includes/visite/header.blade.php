@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-center" href="/">@lang('global.hotel_name')<br><span id="contact-infos">@lang('global.hotel_tel')</span></a>
+    <a class="text-center" href="/"><h1 class="navbar-brand">@lang('global.hotel_name')</h1><p id="contact-infos" class="navbar-brand">@lang('global.hotel_tel')</p></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

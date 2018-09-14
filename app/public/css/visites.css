@@ -6,9 +6,20 @@ body {
 
     position: relative;
     margin: 0;
-    margin-bottom: 0px;
     min-height: 100%;
     overflow-x: hidden;
+}
+
+h1.navbar-brand {
+    display: block;
+}
+.navbar-brand {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 1.8rem;
 }
 
 img {
@@ -19,6 +30,7 @@ img {
 .opacity-article {
     margin: 3% 12%;
     border-radius: 4px;
+    background: rgba(240, 240, 240, 0.9);
 }
 
 .icon-gb {
